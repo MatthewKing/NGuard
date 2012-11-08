@@ -28,7 +28,7 @@
                     "{0} should not be an empty string.",
                     paramName);
 
-                throw new ArgumentNullException(paramName, message);
+                throw new ArgumentException(message, paramName);
             }
 
             return guard;
