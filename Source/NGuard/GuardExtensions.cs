@@ -1,6 +1,7 @@
 ﻿namespace NGuard
 {
     using System;
+    using System.Diagnostics;
 
     /// <summary>
     /// Extension methods for NGuard.Guard.
@@ -13,6 +14,7 @@
         /// <typeparam name="T">The type of the value.</typeparam>
         /// <param name="guard">The guard instance that holds the value to be checked.</param>
         /// <returns>The specified guard instance.</returns>
+        [DebuggerStepThrough]
         public static Guard<T> IsNotNull<T>(this Guard<T> guard) where T : class
         {
             if (guard.Value == null)
@@ -34,6 +36,7 @@
         /// </summary>
         /// <param name="guard">The guard instance that holds the value to be checked.</param>
         /// <returns>The specified guard instance.</returns>
+        [DebuggerStepThrough]
         public static Guard<string> IsNotEmpty(this Guard<string> guard)
         {
             if (guard.Value != null && guard.Value.Length == 0)
@@ -55,6 +58,7 @@
         /// </summary>
         /// <param name="guard">The guard instance that holds the value to be checked.</param>
         /// <returns>The specified guard instance.</returns>
+        [DebuggerStepThrough]
         public static Guard<string> IsNotWhiteSpace(this Guard<string> guard)
         {
             if (guard.Value != null && guard.Value.Length > 0)
@@ -89,6 +93,7 @@
         /// </summary>
         /// <param name="guard">The guard instance that holds the value to be checked.</param>
         /// <returns>The specified guard instance.</returns>
+        [DebuggerStepThrough]
         public static Guard<string> IsNotNullOrEmpty(this Guard<string> guard)
         {
             return guard.IsNotNull().IsNotEmpty();
@@ -100,6 +105,7 @@
         /// </summary>
         /// <param name="guard">The guard instance that holds the value to be checked.</param>
         /// <returns>The specified guard instance.</returns>
+        [DebuggerStepThrough]
         public static Guard<string> IsNotNullOrEmptyOrWhiteSpace(this Guard<string> guard)
         {
             return guard.IsNotNull().IsNotEmpty().IsNotWhiteSpace();
