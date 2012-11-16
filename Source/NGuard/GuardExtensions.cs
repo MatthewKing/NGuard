@@ -10,7 +10,8 @@
     public static class GuardExtensions
     {
         /// <summary>
-        /// Checks whether the argument value is equal to the specified value.
+        /// Checks that the argument value is equal to the specified value. An exception is
+        /// thrown otherwise.
         /// </summary>
         /// <typeparam name="T">The type of the argument.</typeparam>
         /// <param name="guard">The guard instance that holds the argument to be checked.</param>
@@ -23,7 +24,8 @@
         }
 
         /// <summary>
-        /// Checks whether the argument value is equal to the specified value.
+        /// Checks that the argument value is equal to the specified value. An exception is
+        /// thrown otherwise.
         /// </summary>
         /// <typeparam name="T">The type of the argument.</typeparam>
         /// <param name="guard">The guard instance that holds the argument to be checked.</param>
@@ -50,7 +52,8 @@
         }
 
         /// <summary>
-        /// Checks whether the argument value is not equal to the specified value.
+        /// Checks whether the argument value is not equal to the specified value. An exception
+        /// is thrown otherwise.
         /// </summary>
         /// <typeparam name="T">The type of the argument.</typeparam>
         /// <param name="guard">The guard instance that holds the argument to be checked.</param>
@@ -63,7 +66,8 @@
         }
 
         /// <summary>
-        /// Checks whether the argument value is not equal to the specified value.
+        /// Checks whether the argument value is not equal to the specified value. An exception
+        /// is thrown otherwise.
         /// </summary>
         /// <typeparam name="T">The type of the argument.</typeparam>
         /// <param name="guard">The guard instance that holds the argument to be checked.</param>
@@ -90,10 +94,10 @@
         }
 
         /// <summary>
-        /// Checks that the specified value is not null. An exception is thrown otherwise.
+        /// Checks that the argument value is not null. An exception is thrown otherwise.
         /// </summary>
-        /// <typeparam name="T">The type of the value.</typeparam>
-        /// <param name="guard">The guard instance that holds the value to be checked.</param>
+        /// <typeparam name="T">The type of the argument.</typeparam>
+        /// <param name="guard">The guard instance that holds the argument to be checked.</param>
         /// <returns>The specified guard instance.</returns>
         [DebuggerStepThrough]
         public static Guard<T> IsNotNull<T>(this Guard<T> guard) where T : class
@@ -112,10 +116,10 @@
         }
 
         /// <summary>
-        /// Checks that the specified value is not an empty string. An exception is thrown
+        /// Checks that the argument value is not an empty string. An exception is thrown
         /// otherwise.
         /// </summary>
-        /// <param name="guard">The guard instance that holds the value to be checked.</param>
+        /// <param name="guard">The guard instance that holds the argument to be checked.</param>
         /// <returns>The specified guard instance.</returns>
         [DebuggerStepThrough]
         public static Guard<string> IsNotEmpty(this Guard<string> guard)
@@ -134,10 +138,10 @@
         }
 
         /// <summary>
-        /// Checks that the specified value is not comprised entirely of whitespace characters.
+        /// Checks that the argument value is not comprised entirely of whitespace characters.
         /// An exception is thrown otherwise.
         /// </summary>
-        /// <param name="guard">The guard instance that holds the value to be checked.</param>
+        /// <param name="guard">The guard instance that holds the argument to be checked.</param>
         /// <returns>The specified guard instance.</returns>
         [DebuggerStepThrough]
         public static Guard<string> IsNotWhiteSpace(this Guard<string> guard)
@@ -169,10 +173,10 @@
         }
 
         /// <summary>
-        /// Checks that the specified value is not null or an empty string. An exception is thrown
+        /// Checks that the argument value is not null or an empty string. An exception is thrown
         /// otherwise.
         /// </summary>
-        /// <param name="guard">The guard instance that holds the value to be checked.</param>
+        /// <param name="guard">The guard instance that holds the argument to be checked.</param>
         /// <returns>The specified guard instance.</returns>
         [DebuggerStepThrough]
         public static Guard<string> IsNotNullOrEmpty(this Guard<string> guard)
@@ -181,10 +185,10 @@
         }
 
         /// <summary>
-        /// Checks that the specified value is not null, an empty string, or comprised entirely
+        /// Checks that the argument value is not null, an empty string, or comprised entirely
         /// of whitespace characters. An exception is thrown otherwise.
         /// </summary>
-        /// <param name="guard">The guard instance that holds the value to be checked.</param>
+        /// <param name="guard">The guard instance that holds the argument to be checked.</param>
         /// <returns>The specified guard instance.</returns>
         [DebuggerStepThrough]
         public static Guard<string> IsNotNullOrEmptyOrWhiteSpace(this Guard<string> guard)
