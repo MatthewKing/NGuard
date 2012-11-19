@@ -10,8 +10,8 @@
     public static class GuardExtensions
     {
         /// <summary>
-        /// Checks that the argument value is equal to the specified value. An exception is
-        /// thrown otherwise.
+        /// Checks that the argument value is equal to the specified comparison value.
+        /// An exception is thrown otherwise.
         /// </summary>
         /// <typeparam name="T">The type of the argument.</typeparam>
         /// <param name="guard">The guard instance that holds the argument to be checked.</param>
@@ -24,8 +24,8 @@
         }
 
         /// <summary>
-        /// Checks that the argument value is equal to the specified value. An exception is
-        /// thrown otherwise.
+        /// Checks that the argument value is equal to the specified comparison value.
+        /// An exception is thrown otherwise.
         /// </summary>
         /// <typeparam name="T">The type of the argument.</typeparam>
         /// <param name="guard">The guard instance that holds the argument to be checked.</param>
@@ -52,8 +52,8 @@
         }
 
         /// <summary>
-        /// Checks whether the argument value is not equal to the specified value. An exception
-        /// is thrown otherwise.
+        /// Checks whether the argument value is not equal to the specified comparison value.
+        /// An exception is thrown otherwise.
         /// </summary>
         /// <typeparam name="T">The type of the argument.</typeparam>
         /// <param name="guard">The guard instance that holds the argument to be checked.</param>
@@ -66,8 +66,8 @@
         }
 
         /// <summary>
-        /// Checks whether the argument value is not equal to the specified value. An exception
-        /// is thrown otherwise.
+        /// Checks whether the argument value is not equal to the specified comparison value.
+        /// An exception is thrown otherwise.
         /// </summary>
         /// <typeparam name="T">The type of the argument.</typeparam>
         /// <param name="guard">The guard instance that holds the argument to be checked.</param>
@@ -194,6 +194,110 @@
         public static Guard<string> IsNotNullOrEmptyOrWhiteSpace(this Guard<string> guard)
         {
             return guard.IsNotNull().IsNotEmpty().IsNotWhiteSpace();
+        }
+
+        /// <summary>
+        /// Checks that the argument value is greater than the specified comparison value.
+        /// An exception is thrown otherwise.
+        /// </summary>
+        /// <typeparam name="T">The type of the argument.</typeparam>
+        /// <param name="guard">The guard instance that holds the argument to be checked.</param>
+        /// <param name="value">The value to compare the argument value with.</param>
+        /// <returns>The specified guard instance.</returns>
+        [DebuggerStepThrough]
+        public static Guard<T> IsGreaterThan<T>(this Guard<T> guard, T value)
+            where T : IComparable<T>
+        {
+            if (guard.Value.CompareTo(value) <= 0)
+            {
+                string paramName = guard.ParameterName;
+                string message = String.Format(
+                    "{0} should be greater than {1}.",
+                    paramName,
+                    value);
+
+                throw new ArgumentOutOfRangeException(paramName, message);
+            }
+
+            return guard;
+        }
+
+        /// <summary>
+        /// Checks that the argument value is greater than, or equal to, the specified comparison
+        /// value. An exception is thrown otherwise.
+        /// </summary>
+        /// <typeparam name="T">The type of the argument.</typeparam>
+        /// <param name="guard">The guard instance that holds the argument to be checked.</param>
+        /// <param name="value">The value to compare the argument value with.</param>
+        /// <returns>The specified guard instance.</returns>
+        [DebuggerStepThrough]
+        public static Guard<T> IsGreaterThanOrEqualTo<T>(this Guard<T> guard, T value)
+            where T : IComparable<T>
+        {
+            if (guard.Value.CompareTo(value) < 0)
+            {
+                string paramName = guard.ParameterName;
+                string message = String.Format(
+                    "{0} should be greater than or equal to {1}.",
+                    paramName,
+                    value);
+
+                throw new ArgumentOutOfRangeException(paramName, message);
+            }
+
+            return guard;
+        }
+
+        /// <summary>
+        /// Checks that the argument value is less than the specified comparison value.
+        /// An exception is thrown otherwise.
+        /// </summary>
+        /// <typeparam name="T">The type of the argument.</typeparam>
+        /// <param name="guard">The guard instance that holds the argument to be checked.</param>
+        /// <param name="value">The value to compare the argument value with.</param>
+        /// <returns>The specified guard instance.</returns>
+        [DebuggerStepThrough]
+        public static Guard<T> IsLessThan<T>(this Guard<T> guard, T value)
+            where T : IComparable<T>
+        {
+            if (guard.Value.CompareTo(value) >= 0)
+            {
+                string paramName = guard.ParameterName;
+                string message = String.Format(
+                    "{0} should be less than {1}.",
+                    paramName,
+                    value);
+
+                throw new ArgumentOutOfRangeException(paramName, message);
+            }
+
+            return guard;
+        }
+
+        /// <summary>
+        /// Checks that the argument value is less than or equal to the specified comparison
+        /// value. An exception is thrown otherwise.
+        /// </summary>
+        /// <typeparam name="T">The type of the argument.</typeparam>
+        /// <param name="guard">The guard instance that holds the argument to be checked.</param>
+        /// <param name="value">The value to compare the argument value with.</param>
+        /// <returns>The specified guard instance.</returns>
+        [DebuggerStepThrough]
+        public static Guard<T> IsLessThanOrEqualTo<T>(this Guard<T> guard, T value)
+            where T : IComparable<T>
+        {
+            if (guard.Value.CompareTo(value) > 0)
+            {
+                string paramName = guard.ParameterName;
+                string message = String.Format(
+                    "{0} should be less than or equal to {1}.",
+                    paramName,
+                    value);
+
+                throw new ArgumentOutOfRangeException(paramName, message);
+            }
+
+            return guard;
         }
     }
 }
