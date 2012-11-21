@@ -138,7 +138,7 @@
         }
 
         /// <summary>
-        /// Checks that the argument value is not comprised entirely of whitespace characters.
+        /// Checks that the argument value is not comprised entirely of white-space characters.
         /// An exception is thrown otherwise.
         /// </summary>
         /// <param name="guard">The guard instance that holds the argument to be checked.</param>
@@ -162,10 +162,10 @@
                 {
                     string paramName = guard.ParameterName;
                     string message = String.Format(
-                        "{0} should contain some non-white-space characters.",
+                        "{0} should not consist only of white-space characters.",
                         paramName);
 
-                    throw new ArgumentNullException(paramName, message);
+                    throw new ArgumentException(message, paramName);
                 }
             }
 
