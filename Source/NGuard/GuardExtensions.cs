@@ -270,7 +270,7 @@
         public static Guard<T> IsGreaterThan<T>(this Guard<T> guard, T value)
             where T : IComparable<T>
         {
-            if (guard.Value.CompareTo(value) <= 0)
+            if (guard.Value == null || guard.Value.CompareTo(value) <= 0)
             {
                 string paramName = guard.ParameterName;
                 string message = String.Format(
@@ -296,7 +296,7 @@
         public static Guard<T> IsGreaterThanOrEqualTo<T>(this Guard<T> guard, T value)
             where T : IComparable<T>
         {
-            if (guard.Value.CompareTo(value) < 0)
+            if (guard.Value == null || guard.Value.CompareTo(value) < 0)
             {
                 string paramName = guard.ParameterName;
                 string message = String.Format(
@@ -322,7 +322,7 @@
         public static Guard<T> IsLessThan<T>(this Guard<T> guard, T value)
             where T : IComparable<T>
         {
-            if (guard.Value.CompareTo(value) >= 0)
+            if (guard.Value == null || guard.Value.CompareTo(value) >= 0)
             {
                 string paramName = guard.ParameterName;
                 string message = String.Format(
@@ -348,7 +348,7 @@
         public static Guard<T> IsLessThanOrEqualTo<T>(this Guard<T> guard, T value)
             where T : IComparable<T>
         {
-            if (guard.Value.CompareTo(value) > 0)
+            if (guard.Value == null || guard.Value.CompareTo(value) > 0)
             {
                 string paramName = guard.ParameterName;
                 string message = String.Format(
