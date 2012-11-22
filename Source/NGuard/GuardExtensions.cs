@@ -197,6 +197,68 @@
         }
 
         /// <summary>
+        /// Checks that the beginning of the argument value matches the specified string when
+        /// compared using the specified comparison option. An exception is thrown otherwise.
+        /// </summary>
+        /// <param name="guard">
+        /// The guard instance that holds the argument to be checked.
+        /// </param>
+        /// <param name="value">
+        /// The string to compare.
+        /// </param>
+        /// <param name="comparisonType">
+        /// A StringComparison value that determines how the strings are compared.
+        /// </param>
+        /// <returns>The specified guard instance.</returns>
+        [DebuggerStepThrough]
+        public static Guard<string> StartsWith(
+            this Guard<string> guard,
+            string value,
+            StringComparison comparisonType)
+        {
+            if (guard.Value == null || !guard.Value.StartsWith(value, comparisonType))
+            {
+                string paramName = guard.ParameterName;
+                string message = String.Format("{0} should start with '{1}'.", paramName, value);
+
+                throw new ArgumentException(message, paramName);
+            }
+
+            return guard;
+        }
+
+        /// <summary>
+        /// Checks that the end of the argument value matches the specified string when
+        /// compared using the specified comparison option. An exception is thrown otherwise.
+        /// </summary>
+        /// <param name="guard">
+        /// The guard instance that holds the argument to be checked.
+        /// </param>
+        /// <param name="value">
+        /// The string to compare.
+        /// </param>
+        /// <param name="comparisonType">
+        /// A StringComparison value that determines how the strings are compared.
+        /// </param>
+        /// <returns>The specified guard instance.</returns>
+        [DebuggerStepThrough]
+        public static Guard<string> EndsWith(
+            this Guard<string> guard,
+            string value,
+            StringComparison comparisonType)
+        {
+            if (guard.Value == null || !guard.Value.EndsWith(value, comparisonType))
+            {
+                string paramName = guard.ParameterName;
+                string message = String.Format("{0} should end with '{1}'.", paramName, value);
+
+                throw new ArgumentException(message, paramName);
+            }
+
+            return guard;
+        }
+
+        /// <summary>
         /// Checks that the argument value is greater than the specified comparison value.
         /// An exception is thrown otherwise.
         /// </summary>
