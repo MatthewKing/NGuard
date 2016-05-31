@@ -7,6 +7,7 @@
 [Rr]elease/
 
 # user-specific files
+.vs/
 *.suo
 *.user
 *.sln.docstates
@@ -21,3 +22,4 @@ packages/
 
 # other
 *.[Cc]ache
+project.lock.json
