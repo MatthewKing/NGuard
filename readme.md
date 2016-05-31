@@ -56,8 +56,8 @@ void ExampleMethod(CustomType value)
 
 Copyright
 ---------
-Copyright Matthew King 2012.
+Copyright Matthew King 2012-2016.
 
 License
 -------
-NGuard is licensed under the [Boost Software License](http://www.boost.org/users/license.html). Refer to license.txt for more information.
+NGuard is licensed under the [MIT License](https://opensource.org/licenses/MIT). Refer to license.txt for more information.
