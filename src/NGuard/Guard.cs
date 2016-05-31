@@ -1,8 +1,8 @@
-﻿namespace NGuard
-{
-    using System;
-    using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 
+namespace NGuard
+{
     /// <summary>
     /// Facilitates the instantiation of Guard&lt;T&gt; instances.
     /// </summary>
@@ -32,12 +32,12 @@
         /// <summary>
         /// Gets the name of the parameter.
         /// </summary>
-        public string ParameterName { get; private set; }
+        public string ParameterName { get; }
 
         /// <summary>
         /// Gets the value of the argument.
         /// </summary>
-        public T Value { get; private set; }
+        public T Value { get; }
 
         /// <summary>
         /// Initializes a new instance of the Guard class.
@@ -46,8 +46,8 @@
         /// <param name="parameterName">The name of the parameter.</param>
         public Guard(T value, string parameterName)
         {
-            this.Value = value;
-            this.ParameterName = parameterName;
+            Value = value;
+            ParameterName = parameterName;
         }
 
         #region System.Object methods

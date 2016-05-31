@@ -1,9 +1,9 @@
-﻿namespace NGuard
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 
+namespace NGuard
+{
     /// <summary>
     /// Extension methods for NGuard.Guard.
     /// </summary>
@@ -33,8 +33,7 @@
         /// <param name="comparer">An equality comparer to compare values.</param>
         /// <returns>The specified guard instance.</returns>
         [DebuggerStepThrough]
-        public static Guard<T> IsEqualTo<T>(this Guard<T> guard,
-            T value, IEqualityComparer<T> comparer)
+        public static Guard<T> IsEqualTo<T>(this Guard<T> guard, T value, IEqualityComparer<T> comparer)
         {
             if (comparer == null)
             {
@@ -44,7 +43,7 @@
             if (!comparer.Equals(guard.Value, value))
             {
                 string paramName = guard.ParameterName;
-                string message = paramName + " should be equal to " + value.ToString();
+                string message = $"{paramName} should be equal to {value}.";
                 throw new ArgumentException(message, paramName);
             }
 
@@ -75,8 +74,7 @@
         /// <param name="comparer">An equality comparer to compare values.</param>
         /// <returns>The specified guard instance.</returns>
         [DebuggerStepThrough]
-        public static Guard<T> IsNotEqualTo<T>(this Guard<T> guard,
-            T value, IEqualityComparer<T> comparer)
+        public static Guard<T> IsNotEqualTo<T>(this Guard<T> guard, T value, IEqualityComparer<T> comparer)
         {
             if (comparer == null)
             {
@@ -86,7 +84,7 @@
             if (comparer.Equals(guard.Value, value))
             {
                 string paramName = guard.ParameterName;
-                string message = paramName + " should not be equal to " + value.ToString();
+                string message = $"{paramName} should not be equal to {value}.";
                 throw new ArgumentException(message, paramName);
             }
 
@@ -100,15 +98,13 @@
         /// <param name="guard">The guard instance that holds the argument to be checked.</param>
         /// <returns>The specified guard instance.</returns>
         [DebuggerStepThrough]
-        public static Guard<T> IsNotNull<T>(this Guard<T> guard) where T : class
+        public static Guard<T> IsNotNull<T>(this Guard<T> guard)
+            where T : class
         {
             if (guard.Value == null)
             {
                 string paramName = guard.ParameterName;
-                string message = String.Format(
-                    "{0} should not be null.",
-                    paramName);
-
+                string message = $"{paramName} should not be null.";
                 throw new ArgumentNullException(paramName, message);
             }
 
@@ -127,10 +123,7 @@
             if (guard.Value != null && guard.Value.Length == 0)
             {
                 string paramName = guard.ParameterName;
-                string message = String.Format(
-                    "{0} should not be an empty string.",
-                    paramName);
-
+                string message = $"{paramName} should not be an empty string.";
                 throw new ArgumentException(message, paramName);
             }
 
@@ -161,10 +154,7 @@
                 if (whitespace)
                 {
                     string paramName = guard.ParameterName;
-                    string message = String.Format(
-                        "{0} should not consist only of white-space characters.",
-                        paramName);
-
+                    string message = $"{paramName} should not consist only of white-space characters.";
                     throw new ArgumentException(message, paramName);
                 }
             }
@@ -211,16 +201,12 @@
         /// </param>
         /// <returns>The specified guard instance.</returns>
         [DebuggerStepThrough]
-        public static Guard<string> StartsWith(
-            this Guard<string> guard,
-            string value,
-            StringComparison comparisonType)
+        public static Guard<string> StartsWith(this Guard<string> guard, string value, StringComparison comparisonType)
         {
             if (guard.Value == null || !guard.Value.StartsWith(value, comparisonType))
             {
                 string paramName = guard.ParameterName;
-                string message = String.Format("{0} should start with '{1}'.", paramName, value);
-
+                string message = $"{paramName} should start with '{value}'.";
                 throw new ArgumentException(message, paramName);
             }
 
@@ -242,16 +228,12 @@
         /// </param>
         /// <returns>The specified guard instance.</returns>
         [DebuggerStepThrough]
-        public static Guard<string> EndsWith(
-            this Guard<string> guard,
-            string value,
-            StringComparison comparisonType)
+        public static Guard<string> EndsWith(this Guard<string> guard, string value, StringComparison comparisonType)
         {
             if (guard.Value == null || !guard.Value.EndsWith(value, comparisonType))
             {
                 string paramName = guard.ParameterName;
-                string message = String.Format("{0} should end with '{1}'.", paramName, value);
-
+                string message = $"{paramName} should end with '{value}'.";
                 throw new ArgumentException(message, paramName);
             }
 
@@ -273,11 +255,7 @@
             if (guard.Value == null || guard.Value.CompareTo(value) <= 0)
             {
                 string paramName = guard.ParameterName;
-                string message = String.Format(
-                    "{0} should be greater than {1}.",
-                    paramName,
-                    value);
-
+                string message = $"{paramName} should be greater than {value}.";
                 throw new ArgumentOutOfRangeException(paramName, message);
             }
 
@@ -299,11 +277,7 @@
             if (guard.Value == null || guard.Value.CompareTo(value) < 0)
             {
                 string paramName = guard.ParameterName;
-                string message = String.Format(
-                    "{0} should be greater than or equal to {1}.",
-                    paramName,
-                    value);
-
+                string message = $"{paramName} should be greater than or equal to {value}.";
                 throw new ArgumentOutOfRangeException(paramName, message);
             }
 
@@ -325,11 +299,7 @@
             if (guard.Value == null || guard.Value.CompareTo(value) >= 0)
             {
                 string paramName = guard.ParameterName;
-                string message = String.Format(
-                    "{0} should be less than {1}.",
-                    paramName,
-                    value);
-
+                string message = $"{paramName} should be less than {value}.";
                 throw new ArgumentOutOfRangeException(paramName, message);
             }
 
@@ -351,11 +321,7 @@
             if (guard.Value == null || guard.Value.CompareTo(value) > 0)
             {
                 string paramName = guard.ParameterName;
-                string message = String.Format(
-                    "{0} should be less than or equal to {1}.",
-                    paramName,
-                    value);
-
+                string message = $"{paramName} should be less than or equal to {value}.";
                 throw new ArgumentOutOfRangeException(paramName, message);
             }
 
