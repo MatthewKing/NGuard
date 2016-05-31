@@ -3,7 +3,7 @@ NGuard
 
 Introduction
 ------------
-Lightweight guard / pre-condition / parameter validation framework for .NET
+Lightweight guard / pre-condition / parameter validation library for .NET
 
 Using a guard
 -------------
@@ -11,7 +11,7 @@ Using a guard
 // Simple example:
 void ExampleMethod(string input)
 {
-    Guard.Requires(input, "input").IsNotNull();
+    Guard.Requires(input, nameof(input)).IsNotNull();
     
     // method body
 }
@@ -19,7 +19,7 @@ void ExampleMethod(string input)
 // Chaining guards:
 void ExampleMethod(string input)
 {
-    Guard.Requires(input, "input").IsNotNull().IsNotEmpty().IsNotWhiteSpace();
+    Guard.Requires(input, nameof(input)).IsNotNull().IsNotEmpty().IsNotWhiteSpace();
     
     // method body
 }
@@ -37,7 +37,7 @@ static Guard<CustomType> SatisfiesCustomCondition(this Guard<CustomType> guard)
         if (!valid)
         {
             string paramName = guard.ParameterName;
-            string message = paramName + " should satisfy custom condition.";
+            string message = $"{paramName} should satisfy custom condition.";
             throw new ArgumentException(message, paramName);
         }
     }
@@ -48,7 +48,7 @@ static Guard<CustomType> SatisfiesCustomCondition(this Guard<CustomType> guard)
 // Example guard usage:
 void ExampleMethod(CustomType value)
 {
-    Guard.Requires(value, "value").SatisfiesCustomCondition();
+    Guard.Requires(value, nameof(value)).SatisfiesCustomCondition();
     
     // method body
 }
