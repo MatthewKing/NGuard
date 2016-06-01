@@ -5,6 +5,11 @@ Introduction
 ------------
 Lightweight guard / pre-condition / parameter validation library for .NET
 
+Installation
+------------
+
+`PM> Install-Package NGuard`
+
 Using a guard
 -------------
 ````csharp
