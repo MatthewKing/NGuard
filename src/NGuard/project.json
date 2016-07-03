@@ -1,5 +1,5 @@
 ﻿{
-  "version": "1.0.0-*",
+  "version": "1.0.1-*",
   "title": "NGuard",
   "description": "Lightweight guard / pre-condition / parameter validation library for .NET",
   "authors": [ "Matthew King" ],
