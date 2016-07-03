@@ -5,7 +5,7 @@ using System.Diagnostics;
 namespace NGuard
 {
     /// <summary>
-    /// Extension methods for NGuard.Guard.
+    /// Extension methods for <see cref="Guard{T}"/>.
     /// </summary>
     public static class GuardExtensions
     {

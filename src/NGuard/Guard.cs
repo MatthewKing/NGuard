@@ -4,18 +4,18 @@ using System.ComponentModel;
 namespace NGuard
 {
     /// <summary>
-    /// Facilitates the instantiation of Guard&lt;T&gt; instances.
+    /// Facilitates the instantiation of <see cref="Guard{T}"/> instances.
     /// </summary>
     public static class Guard
     {
         /// <summary>
-        /// Returns a new Guard&lt;T&gt; that facilitates the validation of the specified argument.
+        /// Returns a new <see cref="Guard{T}"/> that facilitates the validation of the specified argument.
         /// </summary>
         /// <typeparam name="T">The type of the argument.</typeparam>
         /// <param name="value">The value of the argument.</param>
         /// <param name="parameterName">The name of the parameter.</param>
         /// <returns>
-        /// A new Guard&lt;T&gt; that facilitates the validation of the specified argument.
+        /// A new <see cref="Guard{T}"/> that facilitates the validation of the specified argument.
         /// </returns>
         public static Guard<T> Requires<T>(T value, string parameterName)
         {
@@ -40,7 +40,7 @@ namespace NGuard
         public T Value { get; }
 
         /// <summary>
-        /// Initializes a new instance of the Guard class.
+        /// Initializes a new instance of the <see cref="Guard{T}"/> class.
         /// </summary>
         /// <param name="value">The value of the argument.</param>
         /// <param name="parameterName">The name of the parameter.</param>
@@ -56,7 +56,7 @@ namespace NGuard
         // EditorBrowsableState.Never in order to hide them in the public API.
 
         /// <summary>
-        /// Gets the System.Type of the current instance.
+        /// Gets the <see cref="Type"/> of the current instance.
         /// </summary>
         /// <returns>
         /// The exact runtime type of the current instance.
@@ -68,7 +68,7 @@ namespace NGuard
         }
 
         /// <summary>
-        /// Determines whether the specified System.Object is equal to the current System.Object.
+        /// Determines whether the specified object is equal to the current object.
         /// </summary>
         /// <param name="obj">
         /// The object to compare with the current object.
@@ -86,7 +86,7 @@ namespace NGuard
         /// Serves as a hash function for a particular type.
         /// </summary>
         /// <returns>
-        /// A hash code for the current System.Object.
+        /// A hash code for the current object.
         /// </returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode()
