@@ -30,4 +30,10 @@
     <PackageReference Include="System.Diagnostics.Debug" Version="4.3.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="GuardExtensions.*.cs">
+      <DependentUpon>GuardExtensions.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
 </Project>
