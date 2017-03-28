@@ -1,16 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F5574EB0-5023-4386-8643-33BC42ED4222}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FD82F857-44CE-4354-816F-4173A48CE379}"
-	ProjectSection(SolutionItems) = preProject
-		global.json = global.json
-	EndProjectSection
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "NGuard", "src\NGuard\NGuard.xproj", "{D79A8A0A-5F33-47F7-9240-937964CCE9C9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NGuard", "src\NGuard\NGuard.csproj", "{F128C9F2-A3F4-447A-A040-3FF2B3AC26C3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,15 +11,12 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D79A8A0A-5F33-47F7-9240-937964CCE9C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D79A8A0A-5F33-47F7-9240-937964CCE9C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D79A8A0A-5F33-47F7-9240-937964CCE9C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D79A8A0A-5F33-47F7-9240-937964CCE9C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F128C9F2-A3F4-447A-A040-3FF2B3AC26C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F128C9F2-A3F4-447A-A040-3FF2B3AC26C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F128C9F2-A3F4-447A-A040-3FF2B3AC26C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F128C9F2-A3F4-447A-A040-3FF2B3AC26C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{D79A8A0A-5F33-47F7-9240-937964CCE9C9} = {F5574EB0-5023-4386-8643-33BC42ED4222}
 	EndGlobalSection
 EndGlobal

@@ -73,7 +73,7 @@ void ExampleMethod(CustomType value)
 Copyright
 ---------
 
-Copyright Matthew King 2012-2016.
+Copyright Matthew King 2012-2017.
 
 License
 -------

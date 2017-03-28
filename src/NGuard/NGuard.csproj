@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net35;net40;net45;net46;netstandard1.1</TargetFrameworks>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <PackageId>NGuard</PackageId>
+    <Title>NGuard</Title>
+    <Description>Lightweight guard / pre-condition / parameter validation library for .NET</Description>
+    <Authors>Matthew King</Authors>
+    <Copyright>Copyright Matthew King 2012-2017</Copyright>
+    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/MatthewKing/NGuard</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/MatthewKing/NGuard</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>guard;condition;parameter;validation</PackageTags>
+    <VersionPrefix>1.0.2</VersionPrefix>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.1' ">
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+  </PropertyGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.1' ">
+    <PackageReference Include="System.Collections" Version="4.3.0" />
+    <PackageReference Include="System.Net.Primitives" Version="4.3.0" />
+    <PackageReference Include="System.Diagnostics.Debug" Version="4.3.0" />
+  </ItemGroup>
+
+</Project>
