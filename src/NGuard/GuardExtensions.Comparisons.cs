@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace NGuard
@@ -12,12 +13,15 @@ namespace NGuard
         /// <typeparam name="T">The type of the argument.</typeparam>
         /// <param name="guard">The guard instance that holds the argument to be checked.</param>
         /// <param name="value">The value to compare the argument value with.</param>
+        /// <param name="comparer">A comparer to compare values. If null, the default comparer will be used.</param>
         /// <returns>The specified guard instance.</returns>
         [DebuggerStepThrough]
-        public static Guard<T> IsGreaterThan<T>(this Guard<T> guard, T value)
+        public static Guard<T> IsGreaterThan<T>(this Guard<T> guard, T value, IComparer<T> comparer = null)
             where T : IComparable<T>
         {
-            if (guard.Value == null || guard.Value.CompareTo(value) <= 0)
+            comparer = comparer ?? Comparer<T>.Default;
+
+            if (guard.Value == null || comparer.Compare(guard.Value, value) <= 0)
             {
                 var paramName = guard.ParameterName;
                 var message = $"{paramName} should be greater than {value}.";
@@ -34,12 +38,15 @@ namespace NGuard
         /// <typeparam name="T">The type of the argument.</typeparam>
         /// <param name="guard">The guard instance that holds the argument to be checked.</param>
         /// <param name="value">The value to compare the argument value with.</param>
+        /// <param name="comparer">A comparer to compare values. If null, the default comparer will be used.</param>
         /// <returns>The specified guard instance.</returns>
         [DebuggerStepThrough]
-        public static Guard<T?> IsGreaterThan<T>(this Guard<T?> guard, T value)
+        public static Guard<T?> IsGreaterThan<T>(this Guard<T?> guard, T value, IComparer<T> comparer = null)
             where T : struct, IComparable<T>
         {
-            if (!guard.Value.HasValue || guard.Value.Value.CompareTo(value) <= 0)
+            comparer = comparer ?? Comparer<T>.Default;
+
+            if (!guard.Value.HasValue || comparer.Compare(guard.Value.Value, value) <= 0)
             {
                 var paramName = guard.ParameterName;
                 var message = $"{paramName} should be greater than {value}.";
@@ -56,12 +63,15 @@ namespace NGuard
         /// <typeparam name="T">The type of the argument.</typeparam>
         /// <param name="guard">The guard instance that holds the argument to be checked.</param>
         /// <param name="value">The value to compare the argument value with.</param>
+        /// <param name="comparer">A comparer to compare values. If null, the default comparer will be used.</param>
         /// <returns>The specified guard instance.</returns>
         [DebuggerStepThrough]
-        public static Guard<T> IsGreaterThanOrEqualTo<T>(this Guard<T> guard, T value)
+        public static Guard<T> IsGreaterThanOrEqualTo<T>(this Guard<T> guard, T value, IComparer<T> comparer = null)
             where T : IComparable<T>
         {
-            if (guard.Value == null || guard.Value.CompareTo(value) < 0)
+            comparer = comparer ?? Comparer<T>.Default;
+
+            if (guard.Value == null || comparer.Compare(guard.Value, value) < 0)
             {
                 var paramName = guard.ParameterName;
                 var message = $"{paramName} should be greater than or equal to {value}.";
@@ -78,12 +88,15 @@ namespace NGuard
         /// <typeparam name="T">The type of the argument.</typeparam>
         /// <param name="guard">The guard instance that holds the argument to be checked.</param>
         /// <param name="value">The value to compare the argument value with.</param>
+        /// <param name="comparer">A comparer to compare values. If null, the default comparer will be used.</param>
         /// <returns>The specified guard instance.</returns>
         [DebuggerStepThrough]
-        public static Guard<T?> IsGreaterThanOrEqualTo<T>(this Guard<T?> guard, T value)
+        public static Guard<T?> IsGreaterThanOrEqualTo<T>(this Guard<T?> guard, T value, IComparer<T> comparer = null)
             where T : struct, IComparable<T>
         {
-            if (!guard.Value.HasValue || guard.Value.Value.CompareTo(value) < 0)
+            comparer = comparer ?? Comparer<T>.Default;
+
+            if (!guard.Value.HasValue || comparer.Compare(guard.Value.Value, value) < 0)
             {
                 var paramName = guard.ParameterName;
                 var message = $"{paramName} should be greater than or equal to {value}.";
@@ -100,12 +113,15 @@ namespace NGuard
         /// <typeparam name="T">The type of the argument.</typeparam>
         /// <param name="guard">The guard instance that holds the argument to be checked.</param>
         /// <param name="value">The value to compare the argument value with.</param>
+        /// <param name="comparer">A comparer to compare values. If null, the default comparer will be used.</param>
         /// <returns>The specified guard instance.</returns>
         [DebuggerStepThrough]
-        public static Guard<T> IsLessThan<T>(this Guard<T> guard, T value)
+        public static Guard<T> IsLessThan<T>(this Guard<T> guard, T value, IComparer<T> comparer = null)
             where T : IComparable<T>
         {
-            if (guard.Value == null || guard.Value.CompareTo(value) >= 0)
+            comparer = comparer ?? Comparer<T>.Default;
+
+            if (guard.Value == null || comparer.Compare(guard.Value, value) >= 0)
             {
                 var paramName = guard.ParameterName;
                 var message = $"{paramName} should be less than {value}.";
@@ -122,12 +138,15 @@ namespace NGuard
         /// <typeparam name="T">The type of the argument.</typeparam>
         /// <param name="guard">The guard instance that holds the argument to be checked.</param>
         /// <param name="value">The value to compare the argument value with.</param>
+        /// <param name="comparer">A comparer to compare values. If null, the default comparer will be used.</param>
         /// <returns>The specified guard instance.</returns>
         [DebuggerStepThrough]
-        public static Guard<T?> IsLessThan<T>(this Guard<T?> guard, T value)
+        public static Guard<T?> IsLessThan<T>(this Guard<T?> guard, T value, IComparer<T> comparer = null)
             where T : struct, IComparable<T>
         {
-            if (!guard.Value.HasValue || guard.Value.Value.CompareTo(value) >= 0)
+            comparer = comparer ?? Comparer<T>.Default;
+
+            if (!guard.Value.HasValue || comparer.Compare(guard.Value.Value, value) >= 0)
             {
                 var paramName = guard.ParameterName;
                 var message = $"{paramName} should be less than {value}.";
@@ -144,12 +163,15 @@ namespace NGuard
         /// <typeparam name="T">The type of the argument.</typeparam>
         /// <param name="guard">The guard instance that holds the argument to be checked.</param>
         /// <param name="value">The value to compare the argument value with.</param>
+        /// <param name="comparer">A comparer to compare values. If null, the default comparer will be used.</param>
         /// <returns>The specified guard instance.</returns>
         [DebuggerStepThrough]
-        public static Guard<T> IsLessThanOrEqualTo<T>(this Guard<T> guard, T value)
+        public static Guard<T> IsLessThanOrEqualTo<T>(this Guard<T> guard, T value, IComparer<T> comparer = null)
             where T : IComparable<T>
         {
-            if (guard.Value == null || guard.Value.CompareTo(value) > 0)
+            comparer = comparer ?? Comparer<T>.Default;
+
+            if (guard.Value == null || comparer.Compare(guard.Value, value) > 0)
             {
                 var paramName = guard.ParameterName;
                 var message = $"{paramName} should be less than or equal to {value}.";
@@ -166,12 +188,15 @@ namespace NGuard
         /// <typeparam name="T">The type of the argument.</typeparam>
         /// <param name="guard">The guard instance that holds the argument to be checked.</param>
         /// <param name="value">The value to compare the argument value with.</param>
+        /// <param name="comparer">A comparer to compare values. If null, the default comparer will be used.</param>
         /// <returns>The specified guard instance.</returns>
         [DebuggerStepThrough]
-        public static Guard<T?> IsLessThanOrEqualTo<T>(this Guard<T?> guard, T value)
+        public static Guard<T?> IsLessThanOrEqualTo<T>(this Guard<T?> guard, T value, IComparer<T> comparer = null)
             where T : struct, IComparable<T>
         {
-            if (!guard.Value.HasValue || guard.Value.Value.CompareTo(value) > 0)
+            comparer = comparer ?? Comparer<T>.Default;
+
+            if (!guard.Value.HasValue || comparer.Compare(guard.Value.Value, value) > 0)
             {
                 var paramName = guard.ParameterName;
                 var message = $"{paramName} should be less than or equal to {value}.";

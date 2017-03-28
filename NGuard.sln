@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NGuard", "src\NGuard\NGuard.csproj", "{F128C9F2-A3F4-447A-A040-3FF2B3AC26C3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NGuard.Tests", "test\NGuard.Tests\NGuard.Tests.csproj", "{419B9FEE-3DF9-45D1-A929-18386CFB95D4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{F128C9F2-A3F4-447A-A040-3FF2B3AC26C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F128C9F2-A3F4-447A-A040-3FF2B3AC26C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F128C9F2-A3F4-447A-A040-3FF2B3AC26C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{419B9FEE-3DF9-45D1-A929-18386CFB95D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{419B9FEE-3DF9-45D1-A929-18386CFB95D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{419B9FEE-3DF9-45D1-A929-18386CFB95D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{419B9FEE-3DF9-45D1-A929-18386CFB95D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
