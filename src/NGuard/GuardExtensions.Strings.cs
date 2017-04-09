@@ -133,5 +133,33 @@ namespace NGuard
 
             return guard;
         }
+
+        /// <summary>
+        /// Checks that the argument value contains the specified string when
+        /// compared using the specified comparison option.
+        /// An exception is thrown otherwise.
+        /// </summary>
+        /// <param name="guard">
+        /// The guard instance that holds the argument to be checked.
+        /// </param>
+        /// <param name="value">
+        /// The string to compare.
+        /// </param>
+        /// <param name="comparisonType">
+        /// A <see cref="StringComparison"/> value that determines how the strings are compared.
+        /// </param>
+        /// <returns>The specified guard instance.</returns>
+        [DebuggerStepThrough]
+        public static Guard<string> Contains(this Guard<string> guard, string value, StringComparison comparisonType = StringComparison.CurrentCulture)
+        {
+            if (guard.Value == null || guard.Value.IndexOf(value, comparisonType) < 0)
+            {
+                var paramName = guard.ParameterName;
+                var message = $"{paramName} should contain '{value}'.";
+                throw new ArgumentException(message, paramName);
+            }
+
+            return guard;
+        }
     }
 }

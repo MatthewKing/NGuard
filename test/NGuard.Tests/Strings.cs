@@ -185,5 +185,46 @@ namespace NGuard.Tests
                 ex.Should().BeNull();
             }
         }
+
+        public class Contains
+        {
+            [Fact]
+            public void PassesWhenTheStringContainsTheSpecifiedValue()
+            {
+                var value = "example string";
+                var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).Contains("str"));
+
+                ex.Should().BeNull();
+            }
+
+            [Fact]
+            public void PassesWhenTheStringContainsTheSpecifiedValueWithACustomComparison()
+            {
+                var value = "example string";
+                var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).Contains("STR", StringComparison.OrdinalIgnoreCase));
+
+                ex.Should().BeNull();
+            }
+
+            [Fact]
+            public void FailsWhenTheStringDoesNotContainTheSpecifiedValue()
+            {
+                var value = "example string";
+                var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).Contains("xxx"));
+
+                ex.Should().NotBeNull();
+                ex.Message.Should().Be("value should contain 'xxx'.\r\nParameter name: value");
+            }
+
+            [Fact]
+            public void FailsWhenTheStringDoesNotContainTheSpecifiedValueWithACustomComparison()
+            {
+                var value = "example string";
+                var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).Contains("XXX", StringComparison.OrdinalIgnoreCase));
+
+                ex.Should().NotBeNull();
+                ex.Message.Should().Be("value should contain 'XXX'.\r\nParameter name: value");
+            }
+        }
     }
 }
