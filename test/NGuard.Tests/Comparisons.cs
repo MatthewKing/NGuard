@@ -285,5 +285,168 @@ namespace NGuard.Tests
                 ex.Message.Should().Be("value should be less than or equal to 0.\r\nParameter name: value");
             }
         }
+
+        public class IsNullOrGreaterThan
+        {
+            [Fact]
+            public void FailsWhenNullableValueIsLessThanExpected()
+            {
+                var value = 1 as int?;
+                var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNullOrGreaterThan(2));
+
+                ex.Should().NotBeNull();
+                ex.Message.Should().Be("value should be either null or greater than 2.\r\nParameter name: value");
+            }
+
+            [Fact]
+            public void FailsWhenNullableValueIsEqualToExpected()
+            {
+                var value = 1 as int?;
+                var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNullOrGreaterThan(1));
+
+                ex.Should().NotBeNull();
+                ex.Message.Should().Be("value should be either null or greater than 1.\r\nParameter name: value");
+            }
+
+            [Fact]
+            public void PassesWhenNullableValueIsGreaterThanExpected()
+            {
+                var value = 1 as int?;
+                var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNullOrGreaterThan(0));
+
+                ex.Should().BeNull();
+            }
+
+            [Fact]
+            public void PassesWhenNullableValueIsNull()
+            {
+                var value = null as int?;
+                var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNullOrGreaterThan(0));
+
+                ex.Should().BeNull();
+            }
+        }
+
+        public class IsNullOrGreaterThanOrEqualTo
+        {
+            [Fact]
+            public void FailsWhenNullableValueIsLessThanExpected()
+            {
+                var value = new Nullable<int>(1);
+                var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNullOrGreaterThanOrEqualTo(2));
+
+                ex.Should().NotBeNull();
+                ex.Message.Should().Be("value should be either null or greater than or equal to 2.\r\nParameter name: value");
+            }
+
+            [Fact]
+            public void PassesWhenNullableValueIsEqualToExpected()
+            {
+                var value = 1 as int?;
+                var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNullOrGreaterThanOrEqualTo(1));
+
+                ex.Should().BeNull();
+            }
+
+            [Fact]
+            public void PassesWhenNullableValueIsGreaterThanExpected()
+            {
+                var value = 1 as int?;
+                var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNullOrGreaterThanOrEqualTo(0));
+
+                ex.Should().BeNull();
+            }
+
+            [Fact]
+            public void PassesWhenNullableValueIsNull()
+            {
+                var value = null as int?;
+                var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNullOrGreaterThanOrEqualTo(0));
+
+                ex.Should().BeNull();
+            }
+        }
+
+        public class IsNullOrLessThan
+        {
+            [Fact]
+            public void PassesWhenNullableValueIsLessThanExpected()
+            {
+                var value = 1 as int?;
+                var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNullOrLessThan(2));
+
+                ex.Should().BeNull();
+            }
+
+            [Fact]
+            public void FailsWhenNullableValueIsEqualToExpected()
+            {
+                var value = 1 as int?;
+                var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNullOrLessThan(1));
+
+                ex.Should().NotBeNull();
+                ex.Message.Should().Be("value should be either null or less than 1.\r\nParameter name: value");
+            }
+
+            [Fact]
+            public void FailsWhenNullableValueIsGreaterThanExpected()
+            {
+                var value = 1 as int?;
+                var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNullOrLessThan(0));
+
+                ex.Should().NotBeNull();
+                ex.Message.Should().Be("value should be either null or less than 0.\r\nParameter name: value");
+            }
+
+            [Fact]
+            public void PassesWhenNullableValueIsNull()
+            {
+                var value = null as int?;
+                var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNullOrLessThan(0));
+
+                ex.Should().BeNull();
+            }
+        }
+
+        public class IsNullOrLessThanOrEqualTo
+        {
+
+            [Fact]
+            public void PassesWhenNullableValueIsLessThanExpected()
+            {
+                var value = 1 as int?;
+                var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNullOrLessThanOrEqualTo(2));
+
+                ex.Should().BeNull();
+            }
+
+            [Fact]
+            public void PassesWhenNullableValueIsEqualToExpected()
+            {
+                var value = 1 as int?;
+                var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNullOrLessThanOrEqualTo(1));
+
+                ex.Should().BeNull();
+            }
+
+            [Fact]
+            public void FailsWhenNullableValueIsGreaterThanExpected()
+            {
+                var value = 1 as int?;
+                var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNullOrLessThanOrEqualTo(0));
+
+                ex.Should().NotBeNull();
+                ex.Message.Should().Be("value should be either null or less than or equal to 0.\r\nParameter name: value");
+            }
+
+            [Fact]
+            public void FailsWhenNullableValueIsNull()
+            {
+                var value = null as int?;
+                var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNullOrLessThanOrEqualTo(0));
+
+                ex.Should().BeNull();
+            }
+        }
     }
 }
