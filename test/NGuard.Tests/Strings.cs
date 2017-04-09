@@ -161,7 +161,7 @@ namespace NGuard.Tests
             public void PassesWhenValueEndsWithSpecifiedString()
             {
                 var value = "example string";
-                var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).EndsWith("string", StringComparison.Ordinal));
+                var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).EndsWith("string"));
 
                 ex.Should().BeNull();
             }
@@ -170,7 +170,7 @@ namespace NGuard.Tests
             public void FailsWhenValueDoesNotEndWithSpecifiedString()
             {
                 var value = "example string";
-                var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).EndsWith("xxx", StringComparison.Ordinal));
+                var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).EndsWith("xxx"));
 
                 ex.Should().NotBeNull();
                 ex.Message.Should().Be("value should end with 'xxx'.\r\nParameter name: value");
@@ -189,7 +189,7 @@ namespace NGuard.Tests
         public class Contains
         {
             [Fact]
-            public void PassesWhenTheStringContainsTheSpecifiedValue()
+            public void PassesWhenValueContainsTheSpecifiedString()
             {
                 var value = "example string";
                 var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).Contains("str"));
@@ -198,7 +198,7 @@ namespace NGuard.Tests
             }
 
             [Fact]
-            public void PassesWhenTheStringContainsTheSpecifiedValueWithACustomComparison()
+            public void PassesWhenValueContainsTheSpecifiedStringUsingCustomStringComparison()
             {
                 var value = "example string";
                 var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).Contains("STR", StringComparison.OrdinalIgnoreCase));
@@ -207,7 +207,7 @@ namespace NGuard.Tests
             }
 
             [Fact]
-            public void FailsWhenTheStringDoesNotContainTheSpecifiedValue()
+            public void FailsWhenValueDoesNotContainTheSpecifiedString()
             {
                 var value = "example string";
                 var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).Contains("xxx"));
@@ -217,7 +217,7 @@ namespace NGuard.Tests
             }
 
             [Fact]
-            public void FailsWhenTheStringDoesNotContainTheSpecifiedValueWithACustomComparison()
+            public void FailsWhenValueDoesNotContainTheSpecifiedStringUsingCustomStringComparison()
             {
                 var value = "example string";
                 var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).Contains("XXX", StringComparison.OrdinalIgnoreCase));

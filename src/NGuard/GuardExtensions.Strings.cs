@@ -91,11 +91,11 @@ namespace NGuard
         /// The string to compare.
         /// </param>
         /// <param name="comparisonType">
-        /// A StringComparison value that determines how the strings are compared.
+        /// A <see cref="StringComparison"/> value that determines how the strings are compared.
         /// </param>
         /// <returns>The specified guard instance.</returns>
         [DebuggerStepThrough]
-        public static Guard<string> StartsWith(this Guard<string> guard, string value, StringComparison comparisonType)
+        public static Guard<string> StartsWith(this Guard<string> guard, string value, StringComparison comparisonType = StringComparison.CurrentCulture)
         {
             if (guard.Value == null || !guard.Value.StartsWith(value, comparisonType))
             {
@@ -118,11 +118,11 @@ namespace NGuard
         /// The string to compare.
         /// </param>
         /// <param name="comparisonType">
-        /// A StringComparison value that determines how the strings are compared.
+        /// A <see cref="StringComparison"/> value that determines how the strings are compared.
         /// </param>
         /// <returns>The specified guard instance.</returns>
         [DebuggerStepThrough]
-        public static Guard<string> EndsWith(this Guard<string> guard, string value, StringComparison comparisonType)
+        public static Guard<string> EndsWith(this Guard<string> guard, string value, StringComparison comparisonType = StringComparison.CurrentCulture)
         {
             if (guard.Value == null || !guard.Value.EndsWith(value, comparisonType))
             {
