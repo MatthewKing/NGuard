@@ -6,42 +6,45 @@ namespace NGuard.Tests
 {
     public class NullChecks
     {
-        [Fact]
-        public void IsNotNullPassesWhenValueIsNotNull()
+        public class IsNotNull
         {
-            var value = new object();
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNotNull());
+            [Fact]
+            public void PassesWhenValueIsNotNull()
+            {
+                var value = new object();
+                var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNotNull());
 
-            ex.Should().BeNull();
-        }
+                ex.Should().BeNull();
+            }
 
-        [Fact]
-        public void IsNotNullFailsWhenValueIsNull()
-        {
-            var value = null as object;
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNotNull());
+            [Fact]
+            public void FailsWhenValueIsNull()
+            {
+                var value = null as object;
+                var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNotNull());
 
-            ex.Should().NotBeNull();
-            ex.Message.Should().Be("value should not be null.\r\nParameter name: value");
-        }
+                ex.Should().NotBeNull();
+                ex.Message.Should().Be("value should not be null.\r\nParameter name: value");
+            }
 
-        [Fact]
-        public void IsNotNullPassesWhenNullableStructValueIsNotNull()
-        {
-            var value = new Nullable<int>(123);
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNotNull());
+            [Fact]
+            public void PassesWhenNullableValueIsNotNull()
+            {
+                var value = 123 as int?;
+                var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNotNull());
 
-            ex.Should().BeNull();
-        }
+                ex.Should().BeNull();
+            }
 
-        [Fact]
-        public void IsNotNullFailsWhenNullableStructValueIsNull()
-        {
-            var value = new Nullable<int>();
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNotNull());
+            [Fact]
+            public void FailsWhenNullableValueIsNull()
+            {
+                var value = null as int?;
+                var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNotNull());
 
-            ex.Should().NotBeNull();
-            ex.Message.Should().Be("value should not be null.\r\nParameter name: value");
+                ex.Should().NotBeNull();
+                ex.Message.Should().Be("value should not be null.\r\nParameter name: value");
+            }
         }
     }
 }
