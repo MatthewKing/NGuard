@@ -1,25 +1,6 @@
-# build folders
-[Bb]in/
-[Oo]bj/
-
-# build results
-[Dd]ebug/
-[Rr]elease/
-
-# user-specific files
 .vs/
-*.suo
-*.user
-*.sln.docstates
-
-# ncrunch
-*.crunchsolution*
-*.ncrunchsolution*
-*.ncrunchproject*
-
-# nuget
-packages/
-
-# other
-*.[Cc]ache
-project.lock.json
+.vscode/
+bin/
+obj/
+build/tools/
+artifacts/
