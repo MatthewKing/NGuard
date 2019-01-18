@@ -1,5 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  
+
+  <PropertyGroup>
+    <TargetFrameworks>net40;netstandard2.0;</TargetFrameworks>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
   <PropertyGroup>
     <PackageId>NGuard</PackageId>
     <Title>NGuard</Title>
@@ -13,21 +18,6 @@
     <PackageTags>guard;condition;parameter;validation</PackageTags>
     <VersionPrefix>2.0.1</VersionPrefix>
   </PropertyGroup>
-
-  <PropertyGroup>
-    <TargetFrameworks>net35;net40;net45;net46;netstandard1.1;netstandard2.0</TargetFrameworks>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-  </PropertyGroup>
-
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.1' ">
-    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
-  </PropertyGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.1' ">
-    <PackageReference Include="System.Collections" Version="4.3.0" />
-    <PackageReference Include="System.Net.Primitives" Version="4.3.0" />
-    <PackageReference Include="System.Diagnostics.Debug" Version="4.3.0" />
-  </ItemGroup>
 
   <ItemGroup>
     <Compile Update="GuardExtensions.*.cs">
