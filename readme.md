@@ -20,7 +20,7 @@ You can use a guard to ensure your method parameters match certain preconditions
 void ExampleMethod(string input)
 {
     Guard.Requires(input, nameof(input)).IsNotNull();
-    
+
     // method body
 }
 ```
@@ -31,7 +31,7 @@ Multiple guards can be chained together:
 void ExampleMethod(string input)
 {
     Guard.Requires(input, nameof(input)).IsNotNull().IsNotEmpty().IsNotWhiteSpace();
-    
+
     // method body
 }
 ```
@@ -54,7 +54,7 @@ static Guard<CustomType> SatisfiesCustomCondition(this Guard<CustomType> guard)
             throw new ArgumentException(message, paramName);
         }
     }
-	
+
 	return guard;
 }
 ```
@@ -65,7 +65,7 @@ Now you can use your custom guard:
 void ExampleMethod(CustomType value)
 {
     Guard.Requires(value, nameof(value)).SatisfiesCustomCondition();
-    
+
     // method body
 }
 ```
@@ -73,7 +73,7 @@ void ExampleMethod(CustomType value)
 Copyright
 ---------
 
-Copyright Matthew King 2012-2018.
+Copyright Matthew King 2012-2019.
 
 License
 -------
