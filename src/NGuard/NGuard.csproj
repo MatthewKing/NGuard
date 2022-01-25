@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net40;netstandard2.0;net5.0;net6.0</TargetFrameworks>
     <LangVersion>latest</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
@@ -22,6 +23,7 @@
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net40' ">
     <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="All" />
+    <Using Remove="System.Net.Http" />
   </ItemGroup>
 
   <ItemGroup>
