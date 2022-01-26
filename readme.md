@@ -1,18 +1,12 @@
-NGuard
-======
-
-Introduction
-------------
+# NGuard
 
 Lightweight guard / pre-condition / parameter validation library for .NET
 
-Installation
-------------
+## Installation
 
 `PM> Install-Package NGuard`
 
-Using NGuard
-------------
+## Using NGuard
 
 You can use a guard to ensure your method parameters match certain preconditions:
 
@@ -36,8 +30,7 @@ void ExampleMethod(string input)
 }
 ```
 
-Defining a custom guard
------------------------
+## Defining a custom guard
 
 Custom guards are easy to write. Just create a new extension method:
 
@@ -49,9 +42,9 @@ static Guard<CustomType> SatisfiesCustomCondition(this Guard<CustomType> guard)
         bool valid = /* code to test custom condition */
         if (!valid)
         {
-            string paramName = guard.ParameterName;
-            string message = $"{paramName} should satisfy custom condition.";
-            throw new ArgumentException(message, paramName);
+            throw new ArgumentException(
+                message: $"{guard.Name} should satisfy custom condition.",
+                paramName: guard.Name);
         }
     }
 
@@ -64,18 +57,17 @@ Now you can use your custom guard:
 ```csharp
 void ExampleMethod(CustomType value)
 {
-    Guard.Requires(value, nameof(value)).SatisfiesCustomCondition();
+    Guard.Requires(value).SatisfiesCustomCondition();
 
     // method body
 }
 ```
 
-Copyright
----------
+## Copyright
 
-Copyright Matthew King 2012-2019.
+Copyright Matthew King 2012-2022.
 
-License
--------
+## License
 
-NGuard is licensed under the [MIT License](https://opensource.org/licenses/MIT). Refer to license.txt for more information.
+NGuard is licensed under the [MIT License](https://opensource.org/licenses/MIT).
+Refer to license.txt for more information.
