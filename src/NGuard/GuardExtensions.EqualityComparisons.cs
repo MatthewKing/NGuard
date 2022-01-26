@@ -20,9 +20,9 @@ public static partial class GuardExtensions
 
         if (!comparer.Equals(guard.Value, value))
         {
-            var paramName = guard.ParameterName;
-            var message = $"{paramName} should be equal to {value}.";
-            throw new ArgumentException(message, paramName);
+            throw new ArgumentException(
+                message: $"{guard.Name} should be equal to '{value}'.",
+                paramName: guard.Name);
         }
 
         return guard;
@@ -44,9 +44,9 @@ public static partial class GuardExtensions
 
         if (comparer.Equals(guard.Value, value))
         {
-            var paramName = guard.ParameterName;
-            var message = $"{paramName} should not be equal to {value}.";
-            throw new ArgumentException(message, paramName);
+            throw new ArgumentException(
+                message: $"{guard.Name} should not be equal to '{value}'.",
+                paramName: guard.Name);
         }
 
         return guard;

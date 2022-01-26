@@ -11,19 +11,20 @@ public class Strings
         public void PassesWhenValueIsNotEmpty()
         {
             var value = "not empty";
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNotEmpty());
+            var action = () => Guard.Requires(value, nameof(value)).IsNotEmpty();
 
-            ex.Should().BeNull();
+            action.Should().NotThrow();
         }
 
         [Fact]
         public void FailsWhenValueIsEmpty()
         {
             var value = "";
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNotEmpty());
+            var action = () => Guard.Requires(value, nameof(value)).IsNotEmpty();
 
-            ex.Should().NotBeNull();
-            ex.Message.Should().Be("value should not be an empty string.\r\nParameter name: value");
+            action.Should()
+                .Throw<ArgumentException>()
+                .WithMessage("value should not be an empty string.*");
         }
     }
 
@@ -33,19 +34,20 @@ public class Strings
         public void PassesWhenValueIsNotWhiteSpace()
         {
             var value = "not empty";
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNotWhiteSpace());
+            var action = () => Guard.Requires(value, nameof(value)).IsNotWhiteSpace();
 
-            ex.Should().BeNull();
+            action.Should().NotThrow();
         }
 
         [Fact]
         public void FailsWhenValueIsWhiteSpace()
         {
             var value = " \t\r\n";
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNotWhiteSpace());
+            var action = () => Guard.Requires(value, nameof(value)).IsNotWhiteSpace();
 
-            ex.Should().NotBeNull();
-            ex.Message.Should().Be("value should not consist only of white-space characters.\r\nParameter name: value");
+            action.Should()
+                .Throw<ArgumentException>()
+                .WithMessage("value should not consist only of white-space characters.*");
         }
     }
 
@@ -55,29 +57,31 @@ public class Strings
         public void PassesWhenValueIsNotNullOrEmpty()
         {
             var value = "not null or empty";
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNotNullOrEmpty());
+            var action = () => Guard.Requires(value, nameof(value)).IsNotNullOrEmpty();
 
-            ex.Should().BeNull();
+            action.Should().NotThrow();
         }
 
         [Fact]
         public void FailsWhenValueIsNull()
         {
             var value = null as string;
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNotNullOrEmpty());
+            var action = () => Guard.Requires(value, nameof(value)).IsNotNullOrEmpty();
 
-            ex.Should().NotBeNull();
-            ex.Message.Should().Be("value should not be null.\r\nParameter name: value");
+            action.Should()
+                .Throw<ArgumentException>()
+                .WithMessage("value should not be null.*");
         }
 
         [Fact]
         public void FailsWhenValueIsEmpty()
         {
             var value = "";
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNotNullOrEmpty());
+            var action = () => Guard.Requires(value, nameof(value)).IsNotNullOrEmpty();
 
-            ex.Should().NotBeNull();
-            ex.Message.Should().Be("value should not be an empty string.\r\nParameter name: value");
+            action.Should()
+                .Throw<ArgumentException>()
+                .WithMessage("value should not be an empty string.*");
         }
     }
 
@@ -87,39 +91,42 @@ public class Strings
         public void PassesWhenValueIsNotNullOrEmptyOrWhiteSpace()
         {
             var value = "not null or empty or whitespace";
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNotNullOrEmptyOrWhiteSpace());
+            var action = () => Guard.Requires(value, nameof(value)).IsNotNullOrEmptyOrWhiteSpace();
 
-            ex.Should().BeNull();
+            action.Should().NotThrow();
         }
 
         [Fact]
         public void FailsWhenValueIsNull()
         {
             var value = null as string;
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNotNullOrEmptyOrWhiteSpace());
+            var action = () => Guard.Requires(value, nameof(value)).IsNotNullOrEmptyOrWhiteSpace();
 
-            ex.Should().NotBeNull();
-            ex.Message.Should().Be("value should not be null.\r\nParameter name: value");
+            action.Should()
+                .Throw<ArgumentException>()
+                .WithMessage("value should not be null.*");
         }
 
         [Fact]
         public void FailsWhenValueIsEmpty()
         {
             var value = "";
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNotNullOrEmptyOrWhiteSpace());
+            var action = () => Guard.Requires(value, nameof(value)).IsNotNullOrEmptyOrWhiteSpace();
 
-            ex.Should().NotBeNull();
-            ex.Message.Should().Be("value should not be an empty string.\r\nParameter name: value");
+            action.Should()
+                .Throw<ArgumentException>()
+                .WithMessage("value should not be an empty string.*");
         }
 
         [Fact]
         public void FailsWhenValueIsWhiteSpace()
         {
             var value = "\r\n \t";
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNotNullOrEmptyOrWhiteSpace());
+            var action = () => Guard.Requires(value, nameof(value)).IsNotNullOrEmptyOrWhiteSpace();
 
-            ex.Should().NotBeNull();
-            ex.Message.Should().Be("value should not consist only of white-space characters.\r\nParameter name: value");
+            action.Should()
+                .Throw<ArgumentException>()
+                .WithMessage("value should not consist only of white-space characters.*");
         }
     }
 
@@ -129,28 +136,29 @@ public class Strings
         public void PassesWhenValueStartsWithSpecifiedString()
         {
             var value = "example string";
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).StartsWith("example", StringComparison.Ordinal));
+            var action = () => Guard.Requires(value, nameof(value)).StartsWith("example", StringComparison.Ordinal);
 
-            ex.Should().BeNull();
+            action.Should().NotThrow();
         }
 
         [Fact]
         public void FailsWhenValueDoesNotStartWithSpecifiedString()
         {
             var value = "example string";
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).StartsWith("xxx", StringComparison.Ordinal));
+            var action = () => Guard.Requires(value, nameof(value)).StartsWith("xxx", StringComparison.Ordinal);
 
-            ex.Should().NotBeNull();
-            ex.Message.Should().Be("value should start with 'xxx'.\r\nParameter name: value");
+            action.Should()
+                .Throw<ArgumentException>()
+                .WithMessage("value should start with 'xxx'.*");
         }
 
         [Fact]
         public void PassesWhenValueStartsWithSpecifiedStringUsingCustomStringComparison()
         {
             var value = "example string";
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).StartsWith("EXAMPLE", StringComparison.OrdinalIgnoreCase));
+            var action = () => Guard.Requires(value, nameof(value)).StartsWith("EXAMPLE", StringComparison.OrdinalIgnoreCase);
 
-            ex.Should().BeNull();
+            action.Should().NotThrow();
         }
     }
 
@@ -160,28 +168,29 @@ public class Strings
         public void PassesWhenValueEndsWithSpecifiedString()
         {
             var value = "example string";
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).EndsWith("string"));
+            var action = () => Guard.Requires(value, nameof(value)).EndsWith("string");
 
-            ex.Should().BeNull();
+            action.Should().NotThrow();
         }
 
         [Fact]
         public void FailsWhenValueDoesNotEndWithSpecifiedString()
         {
             var value = "example string";
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).EndsWith("xxx"));
+            var action = () => Guard.Requires(value, nameof(value)).EndsWith("xxx");
 
-            ex.Should().NotBeNull();
-            ex.Message.Should().Be("value should end with 'xxx'.\r\nParameter name: value");
+            action.Should()
+                .Throw<ArgumentException>()
+                .WithMessage("value should end with 'xxx'.*");
         }
 
         [Fact]
         public void PassesWhenValueEndsWithSpecifiedStringUsingCustomStringComparison()
         {
             var value = "example string";
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).EndsWith("STRING", StringComparison.OrdinalIgnoreCase));
+            var action = () => Guard.Requires(value, nameof(value)).EndsWith("STRING", StringComparison.OrdinalIgnoreCase);
 
-            ex.Should().BeNull();
+            action.Should().NotThrow();
         }
     }
 
@@ -191,38 +200,40 @@ public class Strings
         public void PassesWhenValueContainsTheSpecifiedString()
         {
             var value = "example string";
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).Contains("str"));
+            var action = () => Guard.Requires(value, nameof(value)).Contains("str");
 
-            ex.Should().BeNull();
+            action.Should().NotThrow();
         }
 
         [Fact]
         public void PassesWhenValueContainsTheSpecifiedStringUsingCustomStringComparison()
         {
             var value = "example string";
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).Contains("STR", StringComparison.OrdinalIgnoreCase));
+            var action = () => Guard.Requires(value, nameof(value)).Contains("STR", StringComparison.OrdinalIgnoreCase);
 
-            ex.Should().BeNull();
+            action.Should().NotThrow();
         }
 
         [Fact]
         public void FailsWhenValueDoesNotContainTheSpecifiedString()
         {
             var value = "example string";
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).Contains("xxx"));
+            var action = () => Guard.Requires(value, nameof(value)).Contains("xxx");
 
-            ex.Should().NotBeNull();
-            ex.Message.Should().Be("value should contain 'xxx'.\r\nParameter name: value");
+            action.Should()
+                .Throw<ArgumentException>()
+                .WithMessage("value should contain 'xxx'.*");
         }
 
         [Fact]
         public void FailsWhenValueDoesNotContainTheSpecifiedStringUsingCustomStringComparison()
         {
             var value = "example string";
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).Contains("XXX", StringComparison.OrdinalIgnoreCase));
+            var action = () => Guard.Requires(value, nameof(value)).Contains("xxx", StringComparison.OrdinalIgnoreCase);
 
-            ex.Should().NotBeNull();
-            ex.Message.Should().Be("value should contain 'XXX'.\r\nParameter name: value");
+            action.Should()
+                .Throw<ArgumentException>()
+                .WithMessage("value should contain 'xxx'.*");
         }
     }
 }

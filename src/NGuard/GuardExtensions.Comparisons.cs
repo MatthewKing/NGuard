@@ -21,9 +21,10 @@ public static partial class GuardExtensions
 
         if (guard.Value == null || comparer.Compare(guard.Value, value) <= 0)
         {
-            var paramName = guard.ParameterName;
-            var message = $"{paramName} should be greater than {value}.";
-            throw new ArgumentOutOfRangeException(paramName, message);
+            throw new ArgumentOutOfRangeException(
+                paramName: guard.Name,
+                actualValue: guard.Value,
+                message: $"{guard.Name} ({guard.Value}) should be greater than {value}.");
         }
 
         return guard;
@@ -46,9 +47,10 @@ public static partial class GuardExtensions
 
         if (!guard.Value.HasValue || comparer.Compare(guard.Value.Value, value) <= 0)
         {
-            var paramName = guard.ParameterName;
-            var message = $"{paramName} should be greater than {value}.";
-            throw new ArgumentOutOfRangeException(paramName, message);
+            throw new ArgumentOutOfRangeException(
+                paramName: guard.Name,
+                actualValue: guard.Value,
+                message: $"{guard.Name} ({guard.Value?.ToString() ?? "null"}) should be greater than {value}.");
         }
 
         return guard;
@@ -71,9 +73,10 @@ public static partial class GuardExtensions
 
         if (guard.Value.HasValue && comparer.Compare(guard.Value.Value, value) <= 0)
         {
-            var paramName = guard.ParameterName;
-            var message = $"{paramName} should be either null or greater than {value}.";
-            throw new ArgumentOutOfRangeException(paramName, message);
+            throw new ArgumentOutOfRangeException(
+                paramName: guard.Name,
+                actualValue: guard.Value,
+                message: $"{guard.Name} ({guard.Value?.ToString() ?? "null"}) should either be null, or be greater than {value}.");
         }
 
         return guard;
@@ -96,9 +99,10 @@ public static partial class GuardExtensions
 
         if (guard.Value == null || comparer.Compare(guard.Value, value) < 0)
         {
-            var paramName = guard.ParameterName;
-            var message = $"{paramName} should be greater than or equal to {value}.";
-            throw new ArgumentOutOfRangeException(paramName, message);
+            throw new ArgumentOutOfRangeException(
+                paramName: guard.Name,
+                actualValue: guard.Value,
+                message: $"{guard.Name} ({guard.Value}) should be greater than or equal to {value}.");
         }
 
         return guard;
@@ -121,9 +125,10 @@ public static partial class GuardExtensions
 
         if (!guard.Value.HasValue || comparer.Compare(guard.Value.Value, value) < 0)
         {
-            var paramName = guard.ParameterName;
-            var message = $"{paramName} should be greater than or equal to {value}.";
-            throw new ArgumentOutOfRangeException(paramName, message);
+            throw new ArgumentOutOfRangeException(
+                paramName: guard.Name,
+                actualValue: guard.Value,
+                message: $"{guard.Name} ({guard.Value?.ToString() ?? "null"}) should be greater than or equal to {value}.");
         }
 
         return guard;
@@ -146,9 +151,10 @@ public static partial class GuardExtensions
 
         if (guard.Value.HasValue && comparer.Compare(guard.Value.Value, value) < 0)
         {
-            var paramName = guard.ParameterName;
-            var message = $"{paramName} should be either null or greater than or equal to {value}.";
-            throw new ArgumentOutOfRangeException(paramName, message);
+            throw new ArgumentOutOfRangeException(
+                paramName: guard.Name,
+                actualValue: guard.Value,
+                message: $"{guard.Name} ({guard.Value?.ToString() ?? "null"}) should either be null, or be greater than or equal to {value}.");
         }
 
         return guard;
@@ -171,9 +177,10 @@ public static partial class GuardExtensions
 
         if (guard.Value == null || comparer.Compare(guard.Value, value) >= 0)
         {
-            var paramName = guard.ParameterName;
-            var message = $"{paramName} should be less than {value}.";
-            throw new ArgumentOutOfRangeException(paramName, message);
+            throw new ArgumentOutOfRangeException(
+                paramName: guard.Name,
+                actualValue: guard.Value,
+                message: $"{guard.Name} ({guard.Value}) should be less than {value}.");
         }
 
         return guard;
@@ -196,9 +203,10 @@ public static partial class GuardExtensions
 
         if (!guard.Value.HasValue || comparer.Compare(guard.Value.Value, value) >= 0)
         {
-            var paramName = guard.ParameterName;
-            var message = $"{paramName} should be less than {value}.";
-            throw new ArgumentOutOfRangeException(paramName, message);
+            throw new ArgumentOutOfRangeException(
+                paramName: guard.Name,
+                actualValue: guard.Value,
+                message: $"{guard.Name} ({guard.Value?.ToString() ?? "null"}) should be less than {value}.");
         }
 
         return guard;
@@ -221,9 +229,10 @@ public static partial class GuardExtensions
 
         if (guard.Value.HasValue && comparer.Compare(guard.Value.Value, value) >= 0)
         {
-            var paramName = guard.ParameterName;
-            var message = $"{paramName} should be either null or less than {value}.";
-            throw new ArgumentOutOfRangeException(paramName, message);
+            throw new ArgumentOutOfRangeException(
+                paramName: guard.Name,
+                actualValue: guard.Value,
+                message: $"{guard.Name} ({guard.Value?.ToString() ?? "null"}) should either be null, or be less than {value}.");
         }
 
         return guard;
@@ -246,9 +255,10 @@ public static partial class GuardExtensions
 
         if (guard.Value == null || comparer.Compare(guard.Value, value) > 0)
         {
-            var paramName = guard.ParameterName;
-            var message = $"{paramName} should be less than or equal to {value}.";
-            throw new ArgumentOutOfRangeException(paramName, message);
+            throw new ArgumentOutOfRangeException(
+                paramName: guard.Name,
+                actualValue: guard.Value,
+                message: $"{guard.Name} ({guard.Value}) should be less than or equal to {value}.");
         }
 
         return guard;
@@ -271,9 +281,10 @@ public static partial class GuardExtensions
 
         if (!guard.Value.HasValue || comparer.Compare(guard.Value.Value, value) > 0)
         {
-            var paramName = guard.ParameterName;
-            var message = $"{paramName} should be less than or equal to {value}.";
-            throw new ArgumentOutOfRangeException(paramName, message);
+            throw new ArgumentOutOfRangeException(
+                paramName: guard.Name,
+                actualValue: guard.Value,
+                message: $"{guard.Name} ({guard.Value?.ToString() ?? "null"}) should be less than or equal to {value}.");
         }
 
         return guard;
@@ -296,9 +307,10 @@ public static partial class GuardExtensions
 
         if (guard.Value.HasValue && comparer.Compare(guard.Value.Value, value) > 0)
         {
-            var paramName = guard.ParameterName;
-            var message = $"{paramName} should be either null or less than or equal to {value}.";
-            throw new ArgumentOutOfRangeException(paramName, message);
+            throw new ArgumentOutOfRangeException(
+                paramName: guard.Name,
+                actualValue: guard.Value,
+                message: $"{guard.Name} ({guard.Value?.ToString() ?? "null"}) should either be null, or be less than or equal to {value}.");
         }
 
         return guard;

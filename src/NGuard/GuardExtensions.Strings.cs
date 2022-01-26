@@ -15,9 +15,9 @@ public static partial class GuardExtensions
     {
         if (guard.Value != null && guard.Value.Length == 0)
         {
-            var paramName = guard.ParameterName;
-            var message = $"{paramName} should not be an empty string.";
-            throw new ArgumentException(message, paramName);
+            throw new ArgumentException(
+                message: $"{guard.Name} should not be an empty string.",
+                paramName: guard.Name);
         }
 
         return guard;
@@ -46,9 +46,9 @@ public static partial class GuardExtensions
 
             if (whitespace)
             {
-                var paramName = guard.ParameterName;
-                var message = $"{paramName} should not consist only of white-space characters.";
-                throw new ArgumentException(message, paramName);
+                throw new ArgumentException(
+                    message: $"{guard.Name} should not consist only of white-space characters.",
+                    paramName: guard.Name);
             }
         }
 
@@ -98,9 +98,9 @@ public static partial class GuardExtensions
     {
         if (guard.Value == null || !guard.Value.StartsWith(value, comparisonType))
         {
-            var paramName = guard.ParameterName;
-            var message = $"{paramName} should start with '{value}'.";
-            throw new ArgumentException(message, paramName);
+            throw new ArgumentException(
+                message: $"{guard.Name} should start with '{value}'.",
+                paramName: guard.Name);
         }
 
         return guard;
@@ -125,9 +125,9 @@ public static partial class GuardExtensions
     {
         if (guard.Value == null || !guard.Value.EndsWith(value, comparisonType))
         {
-            var paramName = guard.ParameterName;
-            var message = $"{paramName} should end with '{value}'.";
-            throw new ArgumentException(message, paramName);
+            throw new ArgumentException(
+                message: $"{guard.Name} should end with '{value}'.",
+                paramName: guard.Name);
         }
 
         return guard;
@@ -153,9 +153,9 @@ public static partial class GuardExtensions
     {
         if (guard.Value == null || guard.Value.IndexOf(value, comparisonType) < 0)
         {
-            var paramName = guard.ParameterName;
-            var message = $"{paramName} should contain '{value}'.";
-            throw new ArgumentException(message, paramName);
+            throw new ArgumentException(
+                message: $"{guard.Name} should contain '{value}'.",
+                paramName: guard.Name);
         }
 
         return guard;

@@ -16,9 +16,9 @@ public static partial class GuardExtensions
     {
         if (guard.Value == null)
         {
-            var paramName = guard.ParameterName;
-            var message = $"{paramName} should not be null.";
-            throw new ArgumentNullException(paramName, message);
+            throw new ArgumentNullException(
+                paramName: guard.Name,
+                message: $"{guard.Name} should not be null.");
         }
 
         return guard;
@@ -36,9 +36,9 @@ public static partial class GuardExtensions
     {
         if (!guard.Value.HasValue)
         {
-            var paramName = guard.ParameterName;
-            var message = $"{paramName} should not be null.";
-            throw new ArgumentNullException(paramName, message);
+            throw new ArgumentNullException(
+                paramName: guard.Name,
+                message: $"{guard.Name} should not be null.");
         }
 
         return guard;

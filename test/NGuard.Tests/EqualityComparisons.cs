@@ -11,29 +11,31 @@ public class EqualityComparisons
         public void PassesWhenValueIsEqualToExpected()
         {
             var value = "x";
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsEqualTo("x"));
+            var action = () => Guard.Requires(value, nameof(value)).IsEqualTo("x");
 
-            ex.Should().BeNull();
+            action.Should().NotThrow();
         }
 
         [Fact]
         public void FailsWhenValueIsNotEqualToExpected()
         {
             var value = "x";
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsEqualTo("y"));
+            var action = () => Guard.Requires(value, nameof(value)).IsEqualTo("y");
 
-            ex.Should().NotBeNull();
-            ex.Message.Should().Be("value should be equal to y.\r\nParameter name: value");
+            action.Should()
+                .Throw<ArgumentException>()
+                .WithMessage("value should be equal to 'y'.*");
         }
 
         [Fact]
         public void FailsWhenValueIsNull()
         {
             var value = default(string);
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsEqualTo("z"));
+            var action = () => Guard.Requires(value, nameof(value)).IsEqualTo("z");
 
-            ex.Should().NotBeNull();
-            ex.Message.Should().Be("value should be equal to z.\r\nParameter name: value");
+            action.Should()
+                .Throw<ArgumentException>()
+                .WithMessage("value should be equal to 'z'.*");
         }
     }
 
@@ -43,28 +45,29 @@ public class EqualityComparisons
         public void FailsWhenValueIsEqualToExpected()
         {
             var value = "x";
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNotEqualTo("x"));
+            var action = () => Guard.Requires(value, nameof(value)).IsNotEqualTo("x");
 
-            ex.Should().NotBeNull();
-            ex.Message.Should().Be("value should not be equal to x.\r\nParameter name: value");
+            action.Should()
+                .Throw<ArgumentException>()
+                .WithMessage("value should not be equal to 'x'.*");
         }
 
         [Fact]
         public void PassesWhenValueIsNotEqualToExpected()
         {
             var value = "x";
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNotEqualTo("y"));
+            var action = () => Guard.Requires(value, nameof(value)).IsNotEqualTo("y");
 
-            ex.Should().BeNull();
+            action.Should().NotThrow();
         }
 
         [Fact]
         public void PassesWhenValueIsNull()
         {
             var value = default(string);
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNotEqualTo("z"));
+            var action = () => Guard.Requires(value, nameof(value)).IsNotEqualTo("z");
 
-            ex.Should().BeNull();
+            action.Should().NotThrow();
         }
     }
 }

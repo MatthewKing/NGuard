@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace NGuard;
 
@@ -10,43 +11,47 @@ public static class Guard
     /// <summary>
     /// Returns a new <see cref="Guard{T}"/> that facilitates the validation of the specified argument.
     /// </summary>
-    /// <typeparam name="T">The type of the argument.</typeparam>
-    /// <param name="value">The value of the argument.</param>
-    /// <param name="parameterName">The name of the parameter.</param>
+    /// <typeparam name="T">The argument type..</typeparam>
+    /// <param name="value">The argument value.</param>
+    /// <param name="name">The argument name (or expression).</param>
     /// <returns>
     /// A new <see cref="Guard{T}"/> that facilitates the validation of the specified argument.
     /// </returns>
-    public static Guard<T> Requires<T>(T value, string parameterName)
+#if NET5_0_OR_GREATER
+    public static Guard<T> Requires<T>(T value, [CallerArgumentExpression("value")] string name = "")
+#else
+    public static Guard<T> Requires<T>(T value, string name)
+#endif
     {
-        return new Guard<T>(value, parameterName);
+        return new Guard<T>(name, value);
     }
 }
 
 /// <summary>
 /// Facilitates the validation of the specified argument.
 /// </summary>
-/// <typeparam name="T">The type of the argument</typeparam>
+/// <typeparam name="T">The argument type.</typeparam>
 public sealed class Guard<T>
 {
     /// <summary>
-    /// Gets the name of the parameter.
+    /// Gets the argument name.
     /// </summary>
-    public string ParameterName { get; }
+    public string Name { get; }
 
     /// <summary>
-    /// Gets the value of the argument.
+    /// Gets the argument value.
     /// </summary>
     public T Value { get; }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="Guard{T}"/> class.
     /// </summary>
-    /// <param name="value">The value of the argument.</param>
-    /// <param name="parameterName">The name of the parameter.</param>
-    public Guard(T value, string parameterName)
+    /// <param name="name">The argument name.</param>
+    /// <param name="value">The argument value.</param>
+    public Guard(string name, T value)
     {
         Value = value;
-        ParameterName = parameterName;
+        Name = name;
     }
 
     #region System.Object methods

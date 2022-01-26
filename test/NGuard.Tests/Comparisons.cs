@@ -11,68 +11,73 @@ public class Comparisons
         public void FailsWhenValueIsLessThanExpected()
         {
             var value = 1;
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsGreaterThan(2));
+            var action = () => Guard.Requires(value, nameof(value)).IsGreaterThan(2);
 
-            ex.Should().NotBeNull();
-            ex.Message.Should().Be("value should be greater than 2.\r\nParameter name: value");
+            action.Should()
+                .Throw<ArgumentOutOfRangeException>()
+                .WithMessage("value (1) should be greater than 2.*");
         }
 
         [Fact]
         public void FailsWhenValueIsEqualToExpected()
         {
             var value = 1;
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsGreaterThan(1));
+            var action = () => Guard.Requires(value, nameof(value)).IsGreaterThan(1);
 
-            ex.Should().NotBeNull();
-            ex.Message.Should().Be("value should be greater than 1.\r\nParameter name: value");
+            action.Should()
+                .Throw<ArgumentOutOfRangeException>()
+                .WithMessage("value (1) should be greater than 1.*");
         }
 
         [Fact]
         public void PassesWhenValueIsGreaterThanExpected()
         {
             var value = 1;
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsGreaterThan(0));
+            var action = () => Guard.Requires(value, nameof(value)).IsGreaterThan(0);
 
-            ex.Should().BeNull();
+            action.Should().NotThrow();
         }
 
         [Fact]
         public void FailsWhenNullableValueIsLessThanExpected()
         {
             var value = 1 as int?;
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsGreaterThan(2));
+            var action = () => Guard.Requires(value, nameof(value)).IsGreaterThan(2);
 
-            ex.Should().NotBeNull();
-            ex.Message.Should().Be("value should be greater than 2.\r\nParameter name: value");
+            action.Should()
+                .Throw<ArgumentOutOfRangeException>()
+                .WithMessage("value (1) should be greater than 2.*");
         }
 
         [Fact]
         public void FailsWhenNullableValueIsEqualToExpected()
         {
             var value = 1 as int?;
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsGreaterThan(1));
+            var action = () => Guard.Requires(value, nameof(value)).IsGreaterThan(1);
 
-            ex.Should().NotBeNull();
-            ex.Message.Should().Be("value should be greater than 1.\r\nParameter name: value");
+            action.Should()
+                .Throw<ArgumentOutOfRangeException>()
+                .WithMessage("value (1) should be greater than 1.*");
         }
 
         [Fact]
         public void PassesWhenNullableValueIsGreaterThanExpected()
         {
             var value = 1 as int?;
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsGreaterThan(0));
+            var action = () => Guard.Requires(value, nameof(value)).IsGreaterThan(0);
 
-            ex.Should().BeNull();
+            action.Should().NotThrow();
         }
 
         [Fact]
         public void FailsWhenNullableValueIsNull()
         {
             var value = null as int?;
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsGreaterThan(0));
+            var action = () => Guard.Requires(value, nameof(value)).IsGreaterThan(0);
 
-            ex.Should().NotBeNull();
-            ex.Message.Should().Be("value should be greater than 0.\r\nParameter name: value");
+            action.Should()
+                .Throw<ArgumentOutOfRangeException>()
+                .WithMessage("value (null) should be greater than 0.*");
         }
     }
 
@@ -82,66 +87,69 @@ public class Comparisons
         public void FailsWhenValueIsLessThanExpected()
         {
             var value = 1;
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsGreaterThanOrEqualTo(2));
+            var action = () => Guard.Requires(value, nameof(value)).IsGreaterThanOrEqualTo(2);
 
-            ex.Should().NotBeNull();
-            ex.Message.Should().Be("value should be greater than or equal to 2.\r\nParameter name: value");
+            action.Should()
+                .Throw<ArgumentOutOfRangeException>()
+                .WithMessage("value (1) should be greater than or equal to 2.*");
         }
 
         [Fact]
         public void PassesWhenValueIsEqualToExpected()
         {
             var value = 1;
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsGreaterThanOrEqualTo(1));
+            var action = () => Guard.Requires(value, nameof(value)).IsGreaterThanOrEqualTo(1);
 
-            ex.Should().BeNull();
+            action.Should().NotThrow();
         }
 
         [Fact]
         public void PassesWhenValueIsGreaterThanExpected()
         {
             var value = 1;
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsGreaterThanOrEqualTo(0));
+            var action = () => Guard.Requires(value, nameof(value)).IsGreaterThanOrEqualTo(0);
 
-            ex.Should().BeNull();
+            action.Should().NotThrow();
         }
 
         [Fact]
         public void FailsWhenNullableValueIsLessThanExpected()
         {
-            var value = new Nullable<int>(1);
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsGreaterThanOrEqualTo(2));
+            var value = 1 as int?;
+            var action = () => Guard.Requires(value, nameof(value)).IsGreaterThanOrEqualTo(2);
 
-            ex.Should().NotBeNull();
-            ex.Message.Should().Be("value should be greater than or equal to 2.\r\nParameter name: value");
+            action.Should()
+                .Throw<ArgumentOutOfRangeException>()
+                .WithMessage("value (1) should be greater than or equal to 2.*");
         }
 
         [Fact]
         public void PassesWhenNullableValueIsEqualToExpected()
         {
             var value = 1 as int?;
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsGreaterThanOrEqualTo(1));
+            var action = () => Guard.Requires(value, nameof(value)).IsGreaterThanOrEqualTo(1);
 
-            ex.Should().BeNull();
+            action.Should().NotThrow();
         }
 
         [Fact]
         public void PassesWhenNullableValueIsGreaterThanExpected()
         {
             var value = 1 as int?;
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsGreaterThanOrEqualTo(0));
+            var action = () => Guard.Requires(value, nameof(value)).IsGreaterThanOrEqualTo(0);
 
-            ex.Should().BeNull();
+            action.Should().NotThrow();
         }
 
         [Fact]
         public void FailsWhenNullableValueIsNull()
         {
             var value = null as int?;
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsGreaterThanOrEqualTo(0));
+            var action = () => Guard.Requires(value, nameof(value)).IsGreaterThanOrEqualTo(0);
 
-            ex.Should().NotBeNull();
-            ex.Message.Should().Be("value should be greater than or equal to 0.\r\nParameter name: value");
+            action.Should()
+                .Throw<ArgumentOutOfRangeException>()
+                .WithMessage("value (null) should be greater than or equal to 0.*");
         }
     }
 
@@ -151,68 +159,73 @@ public class Comparisons
         public void PassesWhenValueIsLessThanExpected()
         {
             var value = 1;
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsLessThan(2));
+            var action = () => Guard.Requires(value, nameof(value)).IsLessThan(2);
 
-            ex.Should().BeNull();
+            action.Should().NotThrow();
         }
 
         [Fact]
         public void FailsWhenValueIsEqualToExpected()
         {
             var value = 1;
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsLessThan(1));
+            var action = () => Guard.Requires(value, nameof(value)).IsLessThan(1);
 
-            ex.Should().NotBeNull();
-            ex.Message.Should().Be("value should be less than 1.\r\nParameter name: value");
+            action.Should()
+                .Throw<ArgumentOutOfRangeException>()
+                .WithMessage("value (1) should be less than 1.*");
         }
 
         [Fact]
         public void FailsWhenValueIsGreaterThanExpected()
         {
             var value = 1;
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsLessThan(0));
+            var action = () => Guard.Requires(value, nameof(value)).IsLessThan(0);
 
-            ex.Should().NotBeNull();
-            ex.Message.Should().Be("value should be less than 0.\r\nParameter name: value");
+            action.Should()
+                .Throw<ArgumentOutOfRangeException>()
+                .WithMessage("value (1) should be less than 0.*");
         }
 
         [Fact]
         public void PassesWhenNullableValueIsLessThanExpected()
         {
             var value = 1 as int?;
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsLessThan(2));
+            var action = () => Guard.Requires(value, nameof(value)).IsLessThan(2);
 
-            ex.Should().BeNull();
+            action.Should().NotThrow();
         }
 
         [Fact]
         public void FailsWhenNullableValueIsEqualToExpected()
         {
             var value = 1 as int?;
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsLessThan(1));
+            var action = () => Guard.Requires(value, nameof(value)).IsLessThan(1);
 
-            ex.Should().NotBeNull();
-            ex.Message.Should().Be("value should be less than 1.\r\nParameter name: value");
+            action.Should()
+                .Throw<ArgumentOutOfRangeException>()
+                .WithMessage("value (1) should be less than 1.*");
         }
 
         [Fact]
         public void FailsWhenNullableValueIsGreaterThanExpected()
         {
             var value = 1 as int?;
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsLessThan(0));
+            var action = () => Guard.Requires(value, nameof(value)).IsLessThan(0);
 
-            ex.Should().NotBeNull();
-            ex.Message.Should().Be("value should be less than 0.\r\nParameter name: value");
+            action.Should()
+                .Throw<ArgumentOutOfRangeException>()
+                .WithMessage("value (1) should be less than 0.*");
         }
 
         [Fact]
         public void FailsWhenNullableValueIsNull()
         {
             var value = null as int?;
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsLessThan(0));
+            var action = () => Guard.Requires(value, nameof(value)).IsLessThan(0);
 
-            ex.Should().NotBeNull();
-            ex.Message.Should().Be("value should be less than 0.\r\nParameter name: value");
+            action.Should()
+                .Throw<ArgumentOutOfRangeException>()
+                .WithMessage("value (null) should be less than 0.*");
         }
     }
 
@@ -222,66 +235,69 @@ public class Comparisons
         public void PassesWhenValueIsLessThanExpected()
         {
             var value = 1;
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsLessThanOrEqualTo(2));
+            var action = () => Guard.Requires(value, nameof(value)).IsLessThanOrEqualTo(2);
 
-            ex.Should().BeNull();
+            action.Should().NotThrow();
         }
 
         [Fact]
         public void PassesWhenValueIsEqualToExpected()
         {
             var value = 1;
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsLessThanOrEqualTo(1));
+            var action = () => Guard.Requires(value, nameof(value)).IsLessThanOrEqualTo(1);
 
-            ex.Should().BeNull();
+            action.Should().NotThrow();
         }
 
         [Fact]
         public void FailsWhenValueIsGreaterThanExpected()
         {
             var value = 1;
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsLessThanOrEqualTo(0));
+            var action = () => Guard.Requires(value, nameof(value)).IsLessThanOrEqualTo(0);
 
-            ex.Should().NotBeNull();
-            ex.Message.Should().Be("value should be less than or equal to 0.\r\nParameter name: value");
+            action.Should()
+                .Throw<ArgumentOutOfRangeException>()
+                .WithMessage("value (1) should be less than or equal to 0.*");
         }
 
         [Fact]
         public void PassesWhenNullableValueIsLessThanExpected()
         {
             var value = 1 as int?;
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsLessThanOrEqualTo(2));
+            var action = () => Guard.Requires(value, nameof(value)).IsLessThanOrEqualTo(2);
 
-            ex.Should().BeNull();
+            action.Should().NotThrow();
         }
 
         [Fact]
         public void PassesWhenNullableValueIsEqualToExpected()
         {
             var value = 1 as int?;
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsLessThanOrEqualTo(1));
+            var action = () => Guard.Requires(value, nameof(value)).IsLessThanOrEqualTo(1);
 
-            ex.Should().BeNull();
+            action.Should().NotThrow();
         }
 
         [Fact]
         public void FailsWhenNullableValueIsGreaterThanExpected()
         {
             var value = 1 as int?;
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsLessThanOrEqualTo(0));
+            var action = () => Guard.Requires(value, nameof(value)).IsLessThanOrEqualTo(0);
 
-            ex.Should().NotBeNull();
-            ex.Message.Should().Be("value should be less than or equal to 0.\r\nParameter name: value");
+            action.Should()
+                .Throw<ArgumentOutOfRangeException>()
+                .WithMessage("value (1) should be less than or equal to 0.*");
         }
 
         [Fact]
         public void FailsWhenNullableValueIsNull()
         {
             var value = null as int?;
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsLessThanOrEqualTo(0));
+            var action = () => Guard.Requires(value, nameof(value)).IsLessThanOrEqualTo(0);
 
-            ex.Should().NotBeNull();
-            ex.Message.Should().Be("value should be less than or equal to 0.\r\nParameter name: value");
+            action.Should()
+                .Throw<ArgumentOutOfRangeException>()
+                .WithMessage("value (null) should be less than or equal to 0.*");
         }
     }
 
@@ -291,38 +307,40 @@ public class Comparisons
         public void FailsWhenNullableValueIsLessThanExpected()
         {
             var value = 1 as int?;
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNullOrGreaterThan(2));
+            var action = () => Guard.Requires(value, nameof(value)).IsNullOrGreaterThan(2);
 
-            ex.Should().NotBeNull();
-            ex.Message.Should().Be("value should be either null or greater than 2.\r\nParameter name: value");
+            action.Should()
+                .Throw<ArgumentOutOfRangeException>()
+                .WithMessage("value (1) should either be null, or be greater than 2.*");
         }
 
         [Fact]
         public void FailsWhenNullableValueIsEqualToExpected()
         {
             var value = 1 as int?;
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNullOrGreaterThan(1));
+            var action = () => Guard.Requires(value, nameof(value)).IsNullOrGreaterThan(1);
 
-            ex.Should().NotBeNull();
-            ex.Message.Should().Be("value should be either null or greater than 1.\r\nParameter name: value");
+            action.Should()
+                .Throw<ArgumentOutOfRangeException>()
+                .WithMessage("value (1) should either be null, or be greater than 1.*");
         }
 
         [Fact]
         public void PassesWhenNullableValueIsGreaterThanExpected()
         {
             var value = 1 as int?;
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNullOrGreaterThan(0));
+            var action = () => Guard.Requires(value, nameof(value)).IsNullOrGreaterThan(0);
 
-            ex.Should().BeNull();
+            action.Should().NotThrow();
         }
 
         [Fact]
         public void PassesWhenNullableValueIsNull()
         {
             var value = null as int?;
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNullOrGreaterThan(0));
+            var action = () => Guard.Requires(value, nameof(value)).IsNullOrGreaterThan(0);
 
-            ex.Should().BeNull();
+            action.Should().NotThrow();
         }
     }
 
@@ -331,38 +349,39 @@ public class Comparisons
         [Fact]
         public void FailsWhenNullableValueIsLessThanExpected()
         {
-            var value = new Nullable<int>(1);
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNullOrGreaterThanOrEqualTo(2));
+            var value = 1 as int?;
+            var action = () => Guard.Requires(value, nameof(value)).IsNullOrGreaterThanOrEqualTo(2);
 
-            ex.Should().NotBeNull();
-            ex.Message.Should().Be("value should be either null or greater than or equal to 2.\r\nParameter name: value");
+            action.Should()
+                .Throw<ArgumentOutOfRangeException>()
+                .WithMessage("value (1) should either be null, or be greater than or equal to 2.*");
         }
 
         [Fact]
         public void PassesWhenNullableValueIsEqualToExpected()
         {
             var value = 1 as int?;
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNullOrGreaterThanOrEqualTo(1));
+            var action = () => Guard.Requires(value, nameof(value)).IsNullOrGreaterThanOrEqualTo(1);
 
-            ex.Should().BeNull();
+            action.Should().NotThrow();
         }
 
         [Fact]
         public void PassesWhenNullableValueIsGreaterThanExpected()
         {
             var value = 1 as int?;
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNullOrGreaterThanOrEqualTo(0));
+            var action = () => Guard.Requires(value, nameof(value)).IsNullOrGreaterThanOrEqualTo(0);
 
-            ex.Should().BeNull();
+            action.Should().NotThrow();
         }
 
         [Fact]
         public void PassesWhenNullableValueIsNull()
         {
             var value = null as int?;
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNullOrGreaterThanOrEqualTo(0));
+            var action = () => Guard.Requires(value, nameof(value)).IsNullOrGreaterThanOrEqualTo(0);
 
-            ex.Should().BeNull();
+            action.Should().NotThrow();
         }
     }
 
@@ -372,79 +391,81 @@ public class Comparisons
         public void PassesWhenNullableValueIsLessThanExpected()
         {
             var value = 1 as int?;
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNullOrLessThan(2));
+            var action = () => Guard.Requires(value, nameof(value)).IsNullOrLessThan(2);
 
-            ex.Should().BeNull();
+            action.Should().NotThrow();
         }
 
         [Fact]
         public void FailsWhenNullableValueIsEqualToExpected()
         {
             var value = 1 as int?;
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNullOrLessThan(1));
+            var action = () => Guard.Requires(value, nameof(value)).IsNullOrLessThan(1);
 
-            ex.Should().NotBeNull();
-            ex.Message.Should().Be("value should be either null or less than 1.\r\nParameter name: value");
+            action.Should()
+                .Throw<ArgumentOutOfRangeException>()
+                .WithMessage("value (1) should either be null, or be less than 1.*");
         }
 
         [Fact]
         public void FailsWhenNullableValueIsGreaterThanExpected()
         {
             var value = 1 as int?;
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNullOrLessThan(0));
+            var action = () => Guard.Requires(value, nameof(value)).IsNullOrLessThan(0);
 
-            ex.Should().NotBeNull();
-            ex.Message.Should().Be("value should be either null or less than 0.\r\nParameter name: value");
+            action.Should()
+                .Throw<ArgumentOutOfRangeException>()
+                .WithMessage("value (1) should either be null, or be less than 0.*");
         }
 
         [Fact]
         public void PassesWhenNullableValueIsNull()
         {
             var value = null as int?;
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNullOrLessThan(0));
+            var action = () => Guard.Requires(value, nameof(value)).IsNullOrLessThan(0);
 
-            ex.Should().BeNull();
+            action.Should().NotThrow();
         }
     }
 
     public class IsNullOrLessThanOrEqualTo
     {
-
         [Fact]
         public void PassesWhenNullableValueIsLessThanExpected()
         {
             var value = 1 as int?;
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNullOrLessThanOrEqualTo(2));
+            var action = () => Guard.Requires(value, nameof(value)).IsNullOrLessThanOrEqualTo(2);
 
-            ex.Should().BeNull();
+            action.Should().NotThrow();
         }
 
         [Fact]
         public void PassesWhenNullableValueIsEqualToExpected()
         {
             var value = 1 as int?;
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNullOrLessThanOrEqualTo(1));
+            var action = () => Guard.Requires(value, nameof(value)).IsNullOrLessThanOrEqualTo(1);
 
-            ex.Should().BeNull();
+            action.Should().NotThrow();
         }
 
         [Fact]
         public void FailsWhenNullableValueIsGreaterThanExpected()
         {
             var value = 1 as int?;
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNullOrLessThanOrEqualTo(0));
+            var action = () => Guard.Requires(value, nameof(value)).IsNullOrLessThanOrEqualTo(0);
 
-            ex.Should().NotBeNull();
-            ex.Message.Should().Be("value should be either null or less than or equal to 0.\r\nParameter name: value");
+            action.Should()
+                .Throw<ArgumentOutOfRangeException>()
+                .WithMessage("value (1) should either be null, or be less than or equal to 0.*");
         }
 
         [Fact]
         public void FailsWhenNullableValueIsNull()
         {
             var value = null as int?;
-            var ex = Record.Exception(() => Guard.Requires(value, nameof(value)).IsNullOrLessThanOrEqualTo(0));
+            var action = () => Guard.Requires(value, nameof(value)).IsNullOrLessThanOrEqualTo(0);
 
-            ex.Should().BeNull();
+            action.Should().NotThrow();
         }
     }
 }
